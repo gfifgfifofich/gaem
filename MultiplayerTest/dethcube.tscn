@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwajgcyxj2eff"]
+
+[ext_resource type="Texture2D" uid="uid://b8xb1wko766uj" path="res://icon.svg" id="1_5ufkx"]
+[ext_resource type="Script" path="res://dethcube.gd" id="1_dw5fb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jw63t"]
+
+[node name="dethcube" type="Area2D"]
+script = ExtResource("1_dw5fb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jw63t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(3, 0.5, 0.5, 1)
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("1_5ufkx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

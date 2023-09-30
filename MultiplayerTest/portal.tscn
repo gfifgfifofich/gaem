@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://45vq2olifcx4"]
+
+[ext_resource type="Shader" path="res://PortalShader.gdshader" id="1_p4ckh"]
+[ext_resource type="Texture2D" uid="uid://bn2042v1i0y1n" path="res://Sprite-0001.png" id="2_bkq45"]
+[ext_resource type="Environment" uid="uid://bdnc0fed2mei1" path="res://new_environment.tres" id="3_n0va3"]
+[ext_resource type="Texture2D" uid="uid://cjwlc0i33yt68" path="res://Light.png" id="4_voqto"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oe0mc"]
+shader = ExtResource("1_p4ckh")
+shader_parameter/Stage = 0.0
+shader_parameter/bb = 0.1
+shader_parameter/gg = 0.1
+shader_parameter/rr = 4.0
+
+[node name="texture" type="Sprite2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_oe0mc")
+texture = ExtResource("2_bkq45")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_n0va3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.25, 0.25)
+color = Color(0.713726, 0, 0.713726, 1)
+shadow_filter = 2
+shadow_filter_smooth = 7.5
+texture = ExtResource("4_voqto")

@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://dr81vk7yu8pqw"]
+
+[ext_resource type="Texture2D" uid="uid://iqw7gtf4awjv" path="res://65654.png" id="1_m2ara"]
+[ext_resource type="Script" path="res://Tortch.gd" id="2_m3qgf"]
+[ext_resource type="Texture2D" uid="uid://cjwlc0i33yt68" path="res://Light.png" id="2_rjrqf"]
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://sadsad.png" id="3_j18t3"]
+
+[sub_resource type="Gradient" id="Gradient_ywu0b"]
+colors = PackedColorArray(2, 2, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_543wj"]
+gradient = SubResource("Gradient_ywu0b")
+
+[sub_resource type="Curve" id="Curve_alpjm"]
+min_value = -500.0
+max_value = 500.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kccj8"]
+curve = SubResource("Curve_alpjm")
+
+[sub_resource type="Curve" id="Curve_58y84"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0666667, 1), 0.0, 0.0, 0, 0, Vector2(0.822222, 0.978947), 0.0, 0.0, 0, 0, Vector2(0.97037, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_vm4nj"]
+curve = SubResource("Curve_58y84")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g6ajk"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 34.14
+gravity = Vector3(0, -10, 0)
+initial_velocity_min = 7.08
+initial_velocity_max = 67.43
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+orbit_velocity_curve = SubResource("CurveTexture_kccj8")
+damping_min = 100.0
+damping_max = 100.0
+angle_min = -391.8
+angle_max = 205.7
+scale_min = 0.02
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_vm4nj")
+color_ramp = SubResource("GradientTexture1D_543wj")
+
+[node name="65654" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_m2ara")
+script = ExtResource("2_m3qgf")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.43, 0.43)
+color = Color(1, 0.631373, 0.0392157, 1)
+shadow_filter = 2
+shadow_filter_smooth = 64.0
+texture = ExtResource("2_rjrqf")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -1.72)
+amount = 38
+process_material = SubResource("ParticleProcessMaterial_g6ajk")
+texture = ExtResource("3_j18t3")
