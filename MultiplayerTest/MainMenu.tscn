@@ -1,0 +1,278 @@
+[gd_scene load_steps=9 format=3 uid="uid://1771o822402k"]
+
+[ext_resource type="Script" path="res://Settings.gd" id="1_q7nhn"]
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_t7040"]
+[ext_resource type="Script" path="res://Exit.gd" id="2_ja5ob"]
+[ext_resource type="Texture2D" uid="uid://b8xb1wko766uj" path="res://icon.svg" id="3_n8ib7"]
+[ext_resource type="FontFile" uid="uid://c7x1fkfgyftgd" path="res://BruceForeverRegular-X3jd2.ttf" id="4_7wefo"]
+[ext_resource type="Texture2D" uid="uid://cytb8afi2sdku" path="res://1k_Amogus.png" id="5_nqt7p"]
+[ext_resource type="Shader" path="res://MainMenu.gdshader" id="6_v2yv2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6yqbq"]
+shader = ExtResource("6_v2yv2")
+shader_parameter/speed = 0.02
+shader_parameter/scale = Vector2(16, 16)
+shader_parameter/rotate_speed = 1.1
+shader_parameter/line_width = 0.41
+shader_parameter/line_size = 0.115
+shader_parameter/back_color = Color(0, 0, 0, 1)
+shader_parameter/line_color = Color(0.0862745, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t7040")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6yqbq")
+position = Vector2(1190, 856.5)
+scale = Vector2(51.1406, 31.0547)
+texture = ExtResource("3_n8ib7")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -60.0
+offset_right = 295.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_7wefo")
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="Settings" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = 70.0
+offset_right = 295.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_7wefo")
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+script = ExtResource("1_q7nhn")
+
+[node name="Exit" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = 200.0
+offset_right = 295.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_7wefo")
+theme_override_font_sizes/font_size = 48
+text = "Exit"
+script = ExtResource("2_ja5ob")
+
+[node name="Sprite2D" type="Sprite2D" parent="MainMenu"]
+position = Vector2(919, 227)
+scale = Vector2(1.12793, 0.347656)
+texture = ExtResource("5_nqt7p")
+
+[node name="ServerMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="ServerMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 1
+item_0/text = "Server list placehorder"
+
+[node name="Join" type="Button" parent="ServerMenu"]
+layout_mode = 0
+offset_right = 590.0
+offset_bottom = 120.0
+theme_override_fonts/font = ExtResource("4_7wefo")
+theme_override_font_sizes/font_size = 48
+text = "Join by IP"
+
+[node name="HostMenuOpen" type="Button" parent="ServerMenu"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 590.0
+offset_bottom = 250.0
+theme_override_fonts/font = ExtResource("4_7wefo")
+theme_override_font_sizes/font_size = 48
+text = "Host a game"
+
+[node name="Return" type="Button" parent="ServerMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_right = 590.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_7wefo")
+theme_override_font_sizes/font_size = 48
+text = "Main Menu"
+
+[node name="DirectJoinMenu" type="Control" parent="ServerMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IpEdit" type="LineEdit" parent="ServerMenu/DirectJoinMenu"]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 411.0
+offset_right = 1165.0
+offset_bottom = 442.0
+text = "127.0.0.1"
+placeholder_text = "Ip"
+
+[node name="PortEdit" type="LineEdit" parent="ServerMenu/DirectJoinMenu"]
+layout_mode = 0
+offset_left = 1172.0
+offset_top = 411.0
+offset_right = 1260.0
+offset_bottom = 442.0
+text = "25565"
+placeholder_text = "Port"
+
+[node name="Connect" type="Button" parent="ServerMenu/DirectJoinMenu"]
+layout_mode = 0
+offset_left = 899.0
+offset_top = 448.0
+offset_right = 1262.0
+offset_bottom = 477.0
+text = "Connect"
+
+[node name="Close" type="Button" parent="ServerMenu/DirectJoinMenu"]
+layout_mode = 0
+offset_left = 1217.0
+offset_top = 374.0
+offset_right = 1260.0
+offset_bottom = 405.0
+text = "X"
+
+[node name="HostMenu" type="Control" parent="ServerMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PortEdit" type="LineEdit" parent="ServerMenu/HostMenu"]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 384.0
+offset_right = 935.0
+offset_bottom = 471.0
+text = "25565"
+placeholder_text = "Port"
+
+[node name="PlayerCountEdit" type="LineEdit" parent="ServerMenu/HostMenu"]
+layout_mode = 0
+offset_left = 951.0
+offset_top = 369.0
+offset_right = 1160.0
+offset_bottom = 472.0
+text = "8"
+placeholder_text = "Max players"
+
+[node name="Host" type="Button" parent="ServerMenu/HostMenu"]
+layout_mode = 0
+offset_left = 726.0
+offset_top = 488.0
+offset_right = 1148.0
+offset_bottom = 539.0
+text = "Create a server"
+
+[node name="HostClose" type="Button" parent="ServerMenu/HostMenu"]
+layout_mode = 0
+offset_left = 1129.0
+offset_top = 330.0
+offset_right = 1158.0
+offset_bottom = 361.0
+text = "X"
+
+[node name="SettingsMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="User" type="Control" parent="SettingsMenu/TabContainer"]
+layout_mode = 2
+
+[node name="Graphics" type="Control" parent="SettingsMenu/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Audio" type="Control" parent="SettingsMenu/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Controls" type="Control" parent="SettingsMenu/TabContainer"]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="MainMenu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenu/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ServerMenu/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="ServerMenu/HostMenuOpen" to="." method="_on_host_menu_open_pressed"]
+[connection signal="pressed" from="ServerMenu/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="ServerMenu/DirectJoinMenu/Connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="ServerMenu/DirectJoinMenu/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="ServerMenu/HostMenu/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="ServerMenu/HostMenu/HostClose" to="." method="_on_host_close_pressed"]

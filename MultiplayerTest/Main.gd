@@ -8,13 +8,6 @@ func _on_button_2_button_down():
 	clientPeer.create_client($TextEdit2.text, 25565);
 	multiplayer.multiplayer_peer = clientPeer;
 	
-	$Button.visible = false;
-	$Button2.visible = false;
-	$TextEdit.visible = false;
-	$TextEdit2.visible = false;
-	
-	
-	
 	var pli = pl.instantiate()
 	pli.namename = $TextEdit.text
 	add_child(pli);
