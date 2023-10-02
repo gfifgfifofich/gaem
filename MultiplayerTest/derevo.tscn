@@ -5,8 +5,10 @@
 
 [node name="Derevo" type="Sprite2D"]
 modulate = Color(0.419608, 0.141176, 0, 1)
-position = Vector2(-1, 13)
 scale = Vector2(0.13, 1)
 texture = ExtResource("1_ybxnp")
 offset = Vector2(0, -64.323)
 script = ExtResource("2_a1dst")
+
+[node name="end" type="Node2D" parent="."]
+position = Vector2(0, -128)

@@ -17,7 +17,7 @@ var rd = 0
 var Nick = "abobus"
 var t =0;
 var MousePos = Vector2(0.0,0.0);
-
+var shoot = false;
 func _die():
 	queue_free()
 	
@@ -33,7 +33,9 @@ func _physics_process(delta):
 	#$Camera2D.limit_right = get_parent().get_child(3).limit_right
 	#$Camera2D.limit_top = get_parent().get_child(3).limit_top
 	
-	$gun.gunrot = get_angle_to(MousePos) + rad_to_deg(-90)
+	$gun.gunrot = get_angle_to(MousePos) + deg_to_rad(90)
+	if(shoot):
+		$gun.shoot();
 	
 	if(multiplayer.is_server() or id !=0 ):
 		
@@ -47,8 +49,10 @@ func _physics_process(delta):
 	MousePos = get_global_mouse_position();
 	$gun.parentflip = $Icon.flip_h ;
 	
-	if(Input.is_action_just_pressed("MainAttack")):
-		$gun.shoot();
+	if(Input.is_action_pressed("MainAttack")):
+		shoot = true;
+	else:
+		shoot = false
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -77,7 +81,7 @@ func _physics_process(delta):
 			rd +=1;
 			
 		if(id==0):
-			get_parent().rpc("pog",velocity, position,MousePos)
+			get_parent().rpc("pog",velocity, position,MousePos,shoot)
 		
 	
 	$Label.text = Nick
