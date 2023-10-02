@@ -6,11 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cjwlc0i33yt68" path="res://Light.png" id="4_voqto"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oe0mc"]
+render_priority = 0
 shader = ExtResource("1_p4ckh")
-shader_parameter/Stage = 0.0
-shader_parameter/bb = 0.1
-shader_parameter/gg = 0.1
-shader_parameter/rr = 4.0
 
 [node name="texture" type="Sprite2D"]
 texture_filter = 1
@@ -23,6 +20,6 @@ environment = ExtResource("3_n0va3")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.25, 0.25)
 color = Color(0.713726, 0, 0.713726, 1)
-shadow_filter = 2
+shadow_enabled = true
 shadow_filter_smooth = 7.5
 texture = ExtResource("4_voqto")

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj1y631gobifs"]
+[gd_scene load_steps=10 format=3 uid="uid://dj1y631gobifs"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_fs7tg"]
 [ext_resource type="Texture2D" uid="uid://dntvxxapo818i" path="res://sus.png" id="2_qmh8e"]
 [ext_resource type="FontFile" uid="uid://c8yrhsh1lmxyr" path="res://Visitor Rus.ttf" id="3_jomc4"]
 [ext_resource type="Texture2D" uid="uid://dw7a26ai4gevj" path="res://sususus.png" id="4_28qkf"]
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://sadsad.png" id="5_xbnen"]
+[ext_resource type="PackedScene" uid="uid://dhwd636b0h5sj" path="res://derevo.tscn" id="6_v3etg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1wki"]
 radius = 7.0
@@ -72,5 +74,17 @@ scale = Vector2(0.083, 0.149)
 texture = ExtResource("4_28qkf")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 scale = Vector2(0.25, 0.25)
 occluder = SubResource("OccluderPolygon2D_jyjov")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2.48312, 2.48312)
+color = Color(0.643137, 0.643137, 0.643137, 1)
+energy = 0.7
+shadow_enabled = true
+texture = ExtResource("5_xbnen")
+
+[node name="gun" parent="." instance=ExtResource("6_v3etg")]
+position = Vector2(8, 12)
+scale = Vector2(0.055, 0.423)

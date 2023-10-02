@@ -56,7 +56,7 @@ func addPlayer(id, nick):
 		
 		var pli = pl.instantiate();
 		
-		pli.position = Vector2(500,400)
+		pli.position = Vector2(0,0)
 		pli.id = multiplayer.get_remote_sender_id();
 		pli.Nick = nick;
 		add_child(pli);
@@ -81,13 +81,14 @@ func addPlayer(id, nick):
 	
 
 @rpc("any_peer")
-func pog(vel, pos):
+func pog(vel, pos,MousePos):
 	#if(multiplayer.is_server()):
 	
 	for x in range (4,get_child_count()):
 		if get_child(x).id == multiplayer.get_remote_sender_id() and get_child(x).id != 0:
 			get_child(x).position = pos
 			get_child(x).velocity = vel
+			get_child(x).MousePos = MousePos
 			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -6,10 +6,10 @@
 script = ExtResource("1_sw3uy")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 1226.0
-offset_top = 688.0
-offset_right = 1279.0
-offset_bottom = 719.0
+offset_left = 927.0
+offset_top = 513.0
+offset_right = 980.0
+offset_bottom = 544.0
 text = "Serv"
 
 [node name="Button2" type="Button" parent="."]

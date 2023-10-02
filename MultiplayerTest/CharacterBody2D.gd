@@ -16,6 +16,7 @@ var isCreated = false;
 var rd = 0
 var Nick = "abobus"
 var t =0;
+var MousePos = Vector2(0.0,0.0);
 
 func _die():
 	queue_free()
@@ -31,26 +32,35 @@ func _physics_process(delta):
 	##$Camera2D.limit_left = get_parent().get_child(3).limit_left
 	#$Camera2D.limit_right = get_parent().get_child(3).limit_right
 	#$Camera2D.limit_top = get_parent().get_child(3).limit_top
+	
+	$gun.gunrot = get_angle_to(MousePos) + rad_to_deg(-90)
+	
 	if(multiplayer.is_server() or id !=0 ):
 		
 		if not is_on_floor():
 			velocity.y += gravity * delta
 		$Label.text = Nick
+		
+		$PointLight2D.visible=false;
 		move_and_slide()
 		return;
+	MousePos = get_global_mouse_position();
+	$gun.parentflip = $Icon.flip_h ;
 	
+	if(Input.is_action_just_pressed("MainAttack")):
+		$gun.shoot();
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("Left", "Right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -67,7 +77,7 @@ func _physics_process(delta):
 			rd +=1;
 			
 		if(id==0):
-			get_parent().rpc("pog",velocity, position)
+			get_parent().rpc("pog",velocity, position,MousePos)
 		
 	
 	$Label.text = Nick

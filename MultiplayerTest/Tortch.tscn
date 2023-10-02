@@ -57,8 +57,7 @@ script = ExtResource("2_m3qgf")
 position = Vector2(0, -4)
 scale = Vector2(0.43, 0.43)
 color = Color(1, 0.631373, 0.0392157, 1)
-shadow_filter = 2
-shadow_filter_smooth = 64.0
+shadow_enabled = true
 texture = ExtResource("2_rjrqf")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

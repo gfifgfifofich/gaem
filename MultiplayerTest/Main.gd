@@ -29,7 +29,7 @@ func _on_button_button_down():
 	$Button.visible = false;
 	$Button2.visible = false;
 	$TextEdit.visible = false;
-	
+	visible=false
 	var pli = pl.instantiate()
 	pli.namename = $TextEdit.text
 	add_child(pli);
