@@ -38,4 +38,5 @@ explosiveness = 0.76
 script = ExtResource("1_uehq8")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(2, 0.8, 0.2, 1)
 texture = ExtResource("2_na7tg")
