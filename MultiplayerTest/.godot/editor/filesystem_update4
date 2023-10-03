@@ -10,7 +10,4 @@ res://character_body_2d.tscn
 res://MainMenu.tscn
 res://Tortch.tscn
 res://Particles/Test Particles.tscn
-res://player_interface.tscn
-res://MainMenu.gd
-res://HealthBar.gd
 res://CharacterBody2D.gd

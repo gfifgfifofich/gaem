@@ -141,7 +141,8 @@ func _physics_process(delta):
 		shoot = true;
 	else:
 		shoot = false
-	if(Input.is_action_pressed("SecondaryAttack")):
+	
+	if(Input.is_action_pressed("AlternativeAttack")):
 		altshoot = true;
 	else:
 		altshoot = false
