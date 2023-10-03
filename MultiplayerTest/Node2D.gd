@@ -42,7 +42,7 @@ var createdids = -1;
 func localaddPlayer(id, nick):
 	if(id not in createdPlayers):
 		var pli = pl.instantiate()
-		pli.position = Vector2(500,400)
+		pli.position = Vector2(-576,262)
 		pli.id = id;
 		pli.Nick = nick;
 		add_child(pli);
@@ -69,7 +69,7 @@ func addPlayer(id, nick):
 	elif(multiplayer.get_remote_sender_id() not in createdPlayers):
 		
 		var pli = pl.instantiate();
-		pli.position = Vector2(500,400)
+		pli.position = Vector2(-576,262)
 		pli.id = multiplayer.get_remote_sender_id();
 		pli.Nick = nick;
 		add_child(pli,true);

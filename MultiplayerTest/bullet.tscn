@@ -1,7 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj3sd45qfnkbd"]
+[gd_scene load_steps=6 format=3 uid="uid://cj3sd45qfnkbd"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_1dtvo"]
 [ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://sadsad.png" id="1_le4k0"]
+[ext_resource type="Shader" path="res://bullet.gdshader" id="2_uwkyx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4o40"]
+shader = ExtResource("2_uwkyx")
+shader_parameter/color_signal = Color(1, 1, 1, 1)
+shader_parameter/size = 1.0
+shader_parameter/zoom = 8.0
+shader_parameter/speed = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6of5q"]
 radius = 7.0
@@ -10,8 +18,16 @@ radius = 7.0
 script = ExtResource("1_1dtvo")
 
 [node name="Sadsad" type="Sprite2D" parent="."]
-modulate = Color(10, 2, 0.4, 1)
-scale = Vector2(0.08, 0.08)
+modulate = Color(0.619608, 0.0941176, 0.0156863, 1)
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.0900009, 0.0900009)
+texture = ExtResource("1_le4k0")
+
+[node name="Sadsad2" type="Sprite2D" parent="."]
+modulate = Color(0.619608, 0.0941176, 0.0156863, 1)
+material = SubResource("ShaderMaterial_v4o40")
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.0900009, 0.0900009)
 texture = ExtResource("1_le4k0")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -20,10 +36,11 @@ texture = ExtResource("1_le4k0")
 shape = SubResource("CircleShape2D_6of5q")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(0.25, 0.25)
 color = Color(1, 0.2, 0.04, 1)
 shadow_enabled = true
 shadow_filter_smooth = 7.5
 texture = ExtResource("1_le4k0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
