@@ -18,6 +18,7 @@ var Nick = "abobus"
 var t =0;
 var MousePos = Vector2(0.0,0.0);
 var shoot = false;
+var altshoot = false;
 
 var deathTimer = 0.25
 func _die(delta):
@@ -48,10 +49,30 @@ func _physics_process(delta):
 	##$Camera2D.limit_left = get_parent().get_child(3).limit_left
 	#$Camera2D.limit_right = get_parent().get_child(3).limit_right
 	#$Camera2D.limit_top = get_parent().get_child(3).limit_top
-	
-	$gun.gunrot = get_angle_to(MousePos) + deg_to_rad(90)
-	if(shoot):
-		$gun.shoot();
+	if($Wepons.get_child_count()==1):
+		$Wepons.get_child(0).position = Vector2(0.0,0.0)
+		$Wepons.get_child(0).mp = MousePos
+		$Wepons.get_child(0).parentflip = $Icon.flip_h ;
+		if(shoot):
+			$Wepons.get_child(0).shoot();
+		
+		if(altshoot):
+			$Wepons.get_child(0).altshoot();
+		
+	elif($Wepons.get_child_count()==2):
+		$Wepons.get_child(0).position = Vector2(-5.0,0.0)
+		$Wepons.get_child(1).position = Vector2(5.0,0.0)
+		
+		$Wepons.get_child(0).mp = MousePos
+		$Wepons.get_child(1).mp = MousePos
+		
+		$Wepons.get_child(0).parentflip = $Icon.flip_h ;
+		$Wepons.get_child(1).parentflip = $Icon.flip_h ;
+		if(shoot):
+			$Wepons.get_child(0).shoot();
+		
+		if(altshoot):
+			$Wepons.get_child(1).shoot();
 	
 	if(multiplayer.is_server() or id !=0 ):
 		
@@ -63,12 +84,15 @@ func _physics_process(delta):
 		move_and_slide()
 		return;
 	MousePos = get_global_mouse_position();
-	$gun.parentflip = $Icon.flip_h ;
 	
 	if(Input.is_action_pressed("MainAttack")):
 		shoot = true;
 	else:
 		shoot = false
+	if(Input.is_action_pressed("SecondaryAttack")):
+		altshoot = true;
+	else:
+		altshoot = false
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -97,7 +121,7 @@ func _physics_process(delta):
 			rd +=1;
 			
 		if(id==0):
-			get_parent().rpc("pog",velocity, position,MousePos,shoot)
+			get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot)
 		
 	
 	$Label.text = Nick

@@ -85,5 +85,11 @@ energy = 0.7
 shadow_enabled = true
 texture = ExtResource("5_xbnen")
 
-[node name="gun" parent="." instance=ExtResource("6_v3etg")]
+[node name="Wepons" type="Node2D" parent="."]
+position = Vector2(0, 9.315)
+
+[node name="gun" parent="Wepons" instance=ExtResource("6_v3etg")]
+scale = Vector2(0.03, 0.231)
+
+[node name="gun2" parent="Wepons" instance=ExtResource("6_v3etg")]
 scale = Vector2(0.03, 0.231)
