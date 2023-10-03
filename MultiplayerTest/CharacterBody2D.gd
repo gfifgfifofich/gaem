@@ -19,8 +19,12 @@ var t =0;
 var MousePos = Vector2(0.0,0.0);
 var shoot = false;
 func _die():
+	if(id == 0):
+		get_tree().change_scene_to_file("res://MainMenu.tscn")
+		pass
 	queue_free()
 	
+
 func _physics_process(delta):
 	if health <= 0:
 		_die();
@@ -28,6 +32,9 @@ func _physics_process(delta):
 		$Icon.flip_h = velocity.x<0
 	t+=delta
 	$Icon.position.y = -2-sin(t)*2;
+	
+	
+	
 	#$Camera2D.limit_bottom = get_parent().get_child(3).limit_bottom
 	##$Camera2D.limit_left = get_parent().get_child(3).limit_left
 	#$Camera2D.limit_right = get_parent().get_child(3).limit_right

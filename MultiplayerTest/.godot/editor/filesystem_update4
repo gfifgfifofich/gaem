@@ -14,3 +14,4 @@ res://GPUParticles2D.gd
 res://Particles/Test Particles.tscn
 res://bullet.gd
 res://Tortch.tscn
+res://CharacterBody2D.gd

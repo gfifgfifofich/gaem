@@ -69,7 +69,6 @@ func addPlayer(id, nick):
 	elif(multiplayer.get_remote_sender_id() not in createdPlayers):
 		
 		var pli = pl.instantiate();
-		
 		pli.position = Vector2(500,400)
 		pli.id = multiplayer.get_remote_sender_id();
 		pli.Nick = nick;
@@ -92,12 +91,24 @@ func pog(vel, pos,MousePos,shoot):
 			get_child(x).velocity = vel
 			get_child(x).MousePos = MousePos
 			get_child(x).shoot = shoot
-			
+
+@rpc("any_peer")
+func UpdateHealth(id,hp):
+	for x in range (4,get_child_count()):
+		if get_child(x).id == id:
+			get_child(x).health = hp
+		elif(get_child(x).id == 0 and multiplayer.get_unique_id() == id):
+			get_child(x).health = hp
+	pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	if(multiplayer.is_server() ):
+	if(multiplayer.is_server()):
+		
+		for x in range (4,get_child_count()):
+			rpc("UpdateHealth",get_child(x).id, get_child(x).health)
 		var v = Vector2(0,0)
 		var n = 0
 		var maxx = -100000
