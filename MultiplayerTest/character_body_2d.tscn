@@ -86,4 +86,4 @@ shadow_enabled = true
 texture = ExtResource("5_xbnen")
 
 [node name="gun" parent="." instance=ExtResource("6_v3etg")]
-scale = Vector2(0.055, 0.423)
+scale = Vector2(0.03, 0.231)

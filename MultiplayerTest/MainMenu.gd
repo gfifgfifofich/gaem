@@ -39,6 +39,10 @@ func _on_connect_pressed():
 	if(port == null or ip == null):
 		return;
 	
+	$Sprite2D2.visible = false;
+	$ServerMenu.visible = false;
+	$MainMenu.visible = false;
+	$SettingsMenu.visible = false;
 	var clientPeer = ENetMultiplayerPeer.new();
 	clientPeer.create_client(ip, port);
 	multiplayer.multiplayer_peer = clientPeer;
@@ -75,7 +79,10 @@ func _on_host_pressed():
 	serverPeer.create_server(port, maxPlayers);
 	multiplayer.multiplayer_peer = serverPeer;
 	
-	
+	$Sprite2D2.visible = false;
+	$ServerMenu.visible = false;
+	$MainMenu.visible = false;
+	$SettingsMenu.visible = false;
 	var pli = pl.instantiate()
 	pli.namename = "testName"
 	add_child(pli);

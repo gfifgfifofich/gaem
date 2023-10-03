@@ -12,8 +12,10 @@ func _ready():
 		
 		rpc("addPlayer",1,namename)
 	else:
-		$Objects.visible=false
-		$Objects.queue_free()
+		$Objects/PointLight2D.editor_only = false;
+		pass
+		#$Objects.visible=false
+		#$Objects.queue_free()
 	
 	pass
 
