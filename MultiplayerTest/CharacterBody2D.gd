@@ -18,16 +18,25 @@ var Nick = "abobus"
 var t =0;
 var MousePos = Vector2(0.0,0.0);
 var shoot = false;
-func _die():
-	if(id == 0):
-		get_tree().change_scene_to_file("res://MainMenu.tscn")
-		pass
-	queue_free()
+
+var deathTimer = 0.25
+func _die(delta):
+	if(!multiplayer.is_server()):
+		queue_free()
+		if(id == 0):
+			get_tree().change_scene_to_file("res://MainMenu.tscn")
+			pass
+	else:
+		visible = false;
+		deathTimer -= delta
+		get_parent().rpc("Deadge",id)
+		if(deathTimer<=0):
+			queue_free()
 	
 
 func _physics_process(delta):
 	if health <= 0:
-		_die();
+		_die(delta);
 	if(abs(velocity.x)>1):
 		$Icon.flip_h = velocity.x<0
 	t+=delta

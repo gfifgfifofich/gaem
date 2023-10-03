@@ -19,7 +19,10 @@ func _process(delta):
 		var stage = t/maxt
 		get_child(0).scale = stage * startScale
 		t-=delta
+		
+		if(not emitting ||get_child(0).scale.x<0.0 || get_child(0).scale.x > startScale.x*2.0):
+			queue_free()
 		pass
-	if(not emitting):
+	elif(not emitting):
 		queue_free()
 	pass

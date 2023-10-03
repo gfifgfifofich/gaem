@@ -61,7 +61,7 @@ func addPlayer(id, nick):
 		pli.position = Vector2(0,0)
 		pli.id = multiplayer.get_remote_sender_id();
 		pli.Nick = nick;
-		add_child(pli);
+		add_child(pli,true);
 		createdids = pli.id
 		createdPlayers.append(pli.id)
 		createdPlayerNames.append(pli.Nick)
@@ -72,7 +72,7 @@ func addPlayer(id, nick):
 		pli.position = Vector2(500,400)
 		pli.id = multiplayer.get_remote_sender_id();
 		pli.Nick = nick;
-		add_child(pli);
+		add_child(pli,true);
 		createdPlayers.append(pli.id)
 		createdPlayerNames.append(pli.Nick)
 		
@@ -94,21 +94,43 @@ func pog(vel, pos,MousePos,shoot):
 
 @rpc("any_peer")
 func UpdateHealth(id,hp):
-	for x in range (4,get_child_count()):
-		if get_child(x).id == id:
-			get_child(x).health = hp
-		elif(get_child(x).id == 0 and multiplayer.get_unique_id() == id):
-			get_child(x).health = hp
+	if(!multiplayer.is_server()):
+		for x in range (4,get_child_count()):
+			if get_child(x).id == id:
+				get_child(x).health = hp
+			elif(get_child(x).id == 0 and multiplayer.get_unique_id() == id):
+				get_child(x).health = hp
+	pass
+@rpc("any_peer")
+func Deadge(id):
+	if(!multiplayer.is_server()):
+		for x in range (4,get_child_count()):
+			if get_child(x).id == id:
+				get_child(x).health = -10
+			elif(get_child(x).id == 0 and multiplayer.get_unique_id() == id):
+				get_child(x).health = -10
 	pass
 
+@rpc("any_peer")
+func UpdatePlayers(ids):
+	if(!multiplayer.is_server()):
+		for x in range (4,get_child_count()):
+			if get_child(x).id not in ids && get_child(x).id !=0:
+				get_child(x).health = -10
+				get_child(x)._die()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
 	if(multiplayer.is_server()):
 		
+		var daids = []
 		for x in range (4,get_child_count()):
+			daids.append(get_child(x).id);
 			rpc("UpdateHealth",get_child(x).id, get_child(x).health)
+		rpc("UpdatePlayers",daids);
+		
 		var v = Vector2(0,0)
 		var n = 0
 		var maxx = -100000
