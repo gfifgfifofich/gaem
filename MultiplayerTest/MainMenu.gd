@@ -1,6 +1,7 @@
 extends Control
 
 var pl = preload ("res://node_2d.tscn")
+var ui = preload("res://player_interface.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,6 +51,8 @@ func _on_connect_pressed():
 	var pli = pl.instantiate()
 	pli.namename = "testName"
 	add_child(pli);
+	var uii = ui.instantiate()
+	add_child(uii)
 	
 
 

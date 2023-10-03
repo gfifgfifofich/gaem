@@ -117,7 +117,7 @@ func _physics_process(delta):
 		if(!get_parent().created):
 			
 			get_parent().rpc("addPlayer",1,Nick)
-			print ("not obamka")
+			#print ("not obamka")
 			rd +=1;
 			
 		if(id==0):
