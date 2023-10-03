@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj1y631gobifs"]
+[gd_scene load_steps=9 format=3 uid="uid://dj1y631gobifs"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_fs7tg"]
 [ext_resource type="Texture2D" uid="uid://dntvxxapo818i" path="res://sus.png" id="2_qmh8e"]
 [ext_resource type="FontFile" uid="uid://c8yrhsh1lmxyr" path="res://Visitor Rus.ttf" id="3_jomc4"]
-[ext_resource type="Texture2D" uid="uid://dw7a26ai4gevj" path="res://sususus.png" id="4_28qkf"]
 [ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://sadsad.png" id="5_xbnen"]
 [ext_resource type="PackedScene" uid="uid://dhwd636b0h5sj" path="res://derevo.tscn" id="6_v3etg"]
 
@@ -45,33 +44,6 @@ uppercase = true
 enabled = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
-
-[node name="Control" type="Control" parent="Camera2D"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Camera2D/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -290.0
-offset_top = -161.0
-offset_right = -290.0
-offset_bottom = -161.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(14.4666, 8.04678)
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D/Control/MarginContainer"]
-texture_filter = 1
-position = Vector2(20.1153, 20.2566)
-scale = Vector2(0.083, 0.149)
-texture = ExtResource("4_28qkf")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
