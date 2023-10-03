@@ -1,25 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://45vq2olifcx4"]
+[gd_scene load_steps=6 format=3 uid="uid://45vq2olifcx4"]
 
+[ext_resource type="Shader" path="res://PortalShader.gdshader" id="1_p4ckh"]
 [ext_resource type="Texture2D" uid="uid://bn2042v1i0y1n" path="res://Sprite-0001.png" id="2_bkq45"]
 [ext_resource type="Environment" uid="uid://bdnc0fed2mei1" path="res://new_environment.tres" id="3_n0va3"]
 [ext_resource type="Texture2D" uid="uid://cjwlc0i33yt68" path="res://Light.png" id="4_voqto"]
-[ext_resource type="Shader" path="res://portal.gdshader" id="5_aycy1"]
-[ext_resource type="Texture2D" uid="uid://c1j3bhm71c12a" path="res://perlin_big_blue16x16.png" id="5_kqsbj"]
-[ext_resource type="Texture2D" uid="uid://b8xb1wko766uj" path="res://icon.svg" id="6_aytha"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2gd3"]
-shader = ExtResource("5_aycy1")
-shader_parameter/radius = 0.7
-shader_parameter/thickness = 0.48
-shader_parameter/color = Color(0.552941, 0.443137, 0.631373, 1)
-shader_parameter/brightness = 1.66
-shader_parameter/angular_speed = 2.45
-shader_parameter/radial_speed = 1.06
-shader_parameter/alpha = 1.0
-shader_parameter/noise = ExtResource("5_kqsbj")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oe0mc"]
+render_priority = 0
+shader = ExtResource("1_p4ckh")
 
-[node name="Portal" type="Sprite2D"]
+[node name="texture" type="Sprite2D"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_oe0mc")
 texture = ExtResource("2_bkq45")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -31,9 +23,3 @@ color = Color(0.713726, 0, 0.713726, 1)
 shadow_enabled = true
 shadow_filter_smooth = 7.5
 texture = ExtResource("4_voqto")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_l2gd3")
-position = Vector2(0, -1)
-scale = Vector2(0.76, 0.76)
-texture = ExtResource("6_aytha")
