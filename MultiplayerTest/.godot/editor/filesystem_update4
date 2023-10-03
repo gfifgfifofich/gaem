@@ -12,3 +12,5 @@ res://MainMenu.gd
 res://Node2D.gd
 res://GPUParticles2D.gd
 res://Particles/Test Particles.tscn
+res://bullet.gd
+res://Tortch.tscn
