@@ -95,8 +95,8 @@ text = "Exit"
 script = ExtResource("2_ja5ob")
 
 [node name="Sprite2D" type="Sprite2D" parent="MainMenu"]
-position = Vector2(919, 227)
-scale = Vector2(1.12793, 0.347656)
+position = Vector2(574, 128)
+scale = Vector2(0.513184, 0.197266)
 texture = ExtResource("5_nqt7p")
 
 [node name="ServerMenu" type="Control" parent="."]
@@ -157,39 +157,96 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Panel" type="Panel" parent="ServerMenu/DirectJoinMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = -64.0
+offset_right = 198.98
+offset_bottom = 73.02
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="IpEdit" type="LineEdit" parent="ServerMenu/DirectJoinMenu"]
-layout_mode = 0
-offset_left = 897.0
-offset_top = 411.0
-offset_right = 1165.0
-offset_bottom = 442.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -15.5
+offset_right = 88.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "127.0.0.1"
 placeholder_text = "Ip"
 
 [node name="PortEdit" type="LineEdit" parent="ServerMenu/DirectJoinMenu"]
-layout_mode = 0
-offset_left = 1172.0
-offset_top = 411.0
-offset_right = 1260.0
-offset_bottom = 442.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 94.0
+offset_top = -15.5
+offset_right = 182.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "25565"
 placeholder_text = "Port"
 
 [node name="Connect" type="Button" parent="ServerMenu/DirectJoinMenu"]
-layout_mode = 0
-offset_left = 899.0
-offset_top = 448.0
-offset_right = 1262.0
-offset_bottom = 477.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.5
+offset_top = 18.0
+offset_right = 181.5
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Connect"
 
 [node name="Close" type="Button" parent="ServerMenu/DirectJoinMenu"]
-layout_mode = 0
-offset_left = 1217.0
-offset_top = 374.0
-offset_right = 1260.0
-offset_bottom = 405.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 138.0
+offset_top = -49.0
+offset_right = 181.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "X"
+
+[node name="Label" type="Label" parent="ServerMenu/DirectJoinMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -48.0
+offset_right = -108.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Join by ip"
 
 [node name="HostMenu" type="Control" parent="ServerMenu"]
 visible = false
@@ -200,38 +257,80 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Panel" type="Panel" parent="ServerMenu/HostMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -26.0
+offset_right = 224.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="PortEdit" type="LineEdit" parent="ServerMenu/HostMenu"]
-layout_mode = 0
-offset_left = 723.0
-offset_top = 384.0
-offset_right = 935.0
-offset_bottom = 471.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -15.5
+offset_right = -110.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "25565"
 placeholder_text = "Port"
 
 [node name="PlayerCountEdit" type="LineEdit" parent="ServerMenu/HostMenu"]
-layout_mode = 0
-offset_left = 951.0
-offset_top = 369.0
-offset_right = 1160.0
-offset_bottom = 472.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -15.5
+offset_right = -4.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "8"
 placeholder_text = "Max players"
 
 [node name="Host" type="Button" parent="ServerMenu/HostMenu"]
-layout_mode = 0
-offset_left = 726.0
-offset_top = 488.0
-offset_right = 1148.0
-offset_bottom = 539.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = 19.0
+offset_right = 211.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Create a server"
 
 [node name="HostClose" type="Button" parent="ServerMenu/HostMenu"]
-layout_mode = 0
-offset_left = 1129.0
-offset_top = 330.0
-offset_right = 1158.0
-offset_bottom = 361.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 181.0
+offset_top = -16.0
+offset_right = 210.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "X"
 
 [node name="SettingsMenu" type="Control" parent="."]
