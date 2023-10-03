@@ -82,7 +82,7 @@ func addPlayer(id, nick):
 	
 
 @rpc("any_peer")
-func pog(vel, pos,MousePos,shoot,altshoot):
+func pog(vel, pos,MousePos,shoot,altshoot,weapons):
 	#if(multiplayer.is_server()):
 	
 	for x in range (4,get_child_count()):
@@ -92,6 +92,7 @@ func pog(vel, pos,MousePos,shoot,altshoot):
 			get_child(x).MousePos = MousePos
 			get_child(x).shoot = shoot
 			get_child(x).altshoot = altshoot
+			get_child(x).CurrentWeapons = weapons
 
 @rpc("any_peer")
 func UpdateHealth(id,hp):
