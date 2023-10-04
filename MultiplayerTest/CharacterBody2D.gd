@@ -24,23 +24,26 @@ var deathTimer = 0.25
 
 
 var Derevo = preload("res://derevo.tscn")
+var dagub = preload("res://dagun.tscn")
 
 var Weapons = []
 var CurrentWeapons = [-1,-1]
 var yay = 0
 func addWeapon(wep):
-	var wepi = Weapons[wep].instantiate()
-	wepi.scale *= Vector2(0.5,0.5)
-	wepi.WeaponID = wep
-	$Weapons.add_child(wepi)
-
+	if(wep >-1):
+		var wepi = Weapons[wep].instantiate()
+		wepi.scale *= Vector2(1.0,1.0)
+		wepi.WeaponID = wep
+		$Weapons.add_child(wepi)
+	
+	
 func SetWeapons(weparr):
 	if($Weapons.get_child_count() ==2):
 		if($Weapons.get_child(0).WeaponID == weparr[0] && $Weapons.get_child(1).WeaponID == weparr[1]):
 			return
 		elif($Weapons.get_child(1).WeaponID == weparr[0] && $Weapons.get_child(0).WeaponID == weparr[1]):
 			return
-	if($Weapons.get_child_count() ==1):
+	if($Weapons.get_child_count() ==1 && (weparr[0] ==-1 || weparr[1] == -1) ):
 		if($Weapons.get_child(0).WeaponID == weparr[0] || $Weapons.get_child(0).WeaponID == weparr[1]):
 			return
 	
@@ -48,16 +51,16 @@ func SetWeapons(weparr):
 		$Weapons.get_child(0).free()
 	if($Weapons.get_child_count() > 0):
 		$Weapons.get_child(0).free()
-	if(weparr[0]>=0):
-		addWeapon(weparr[0])
-	if(weparr[1]>=0):
-		addWeapon(weparr[1])
+	
+	addWeapon(weparr[0])
+	addWeapon(weparr[1])
 	
 	CurrentWeapons = weparr
 
 func _ready():
 	Weapons.append(Derevo);
-	SetWeapons([0,-1])
+	Weapons.append(dagub);
+	SetWeapons([1,-1])
 	
 	pass
 
@@ -130,9 +133,9 @@ func _physics_process(delta):
 	if(yay >=3):
 		yay =0
 	if yay ==0:
-		CurrentWeapons = [0,0]
+		CurrentWeapons = [1,-1]
 	if yay ==1:
-		CurrentWeapons = [-1,0]
+		CurrentWeapons = [1,0]
 	if yay ==2:
 		CurrentWeapons = [-1,-1]
 	

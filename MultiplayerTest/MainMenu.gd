@@ -9,7 +9,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+var t =0
 func _process(delta):
+	t+=delta
+	$Sprite2D2.material.set_shader_parameter("line_color", Color((sin(t*1)+1.0)*0.125,(sin(t*0.3)+1.0)*0.125,(sin(t*0.5)+1.0)*0.125,1.0))
+	
 	pass
 
 

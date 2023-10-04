@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhwd636b0h5sj"]
 
-[ext_resource type="Texture2D" uid="uid://b8xb1wko766uj" path="res://icon.svg" id="1_ybxnp"]
+[ext_resource type="Texture2D" uid="uid://chqc3ldga4xrr" path="res://BloodPencil.png" id="1_ee01p"]
 [ext_resource type="Script" path="res://derevo.gd" id="2_a1dst"]
 
 [node name="Derevo" type="Sprite2D"]
 modulate = Color(0.419608, 0.141176, 0, 1)
-scale = Vector2(0.13, 1)
-texture = ExtResource("1_ybxnp")
-offset = Vector2(0, -64.323)
+texture_filter = 1
+texture = ExtResource("1_ee01p")
+offset = Vector2(0, -16)
 script = ExtResource("2_a1dst")
 
 [node name="end" type="Node2D" parent="."]
-position = Vector2(0, -128)
+position = Vector2(0, -26)

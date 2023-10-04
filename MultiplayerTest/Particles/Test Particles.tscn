@@ -22,14 +22,14 @@ spread = 180.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 31.58
 initial_velocity_max = 147.37
-angular_velocity_min = -720.0
-angular_velocity_max = 720.0
+angular_velocity_min = -265.01
+angular_velocity_max = 68.21
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 angle_min = -720.0
 angle_max = 720.0
-scale_min = 0.99
-scale_max = 32.57
+scale_min = 0.1
+scale_max = 0.65
 scale_curve = SubResource("CurveTexture_egdmq")
 color_ramp = SubResource("GradientTexture1D_q3os2")
 
@@ -37,10 +37,13 @@ color_ramp = SubResource("GradientTexture1D_q3os2")
 emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_gbe65")
+texture = ExtResource("2_na7tg")
 one_shot = true
 explosiveness = 0.76
 script = ExtResource("1_uehq8")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(2, 0.8, 0.2, 1)
+shadow_enabled = true
 texture = ExtResource("2_na7tg")
+texture_scale = 3.3
