@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-
+const EnemyID = 0
+var id = -1;
 const SPEED = 50.0
 const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -11,20 +12,25 @@ var health = 100
 func _ready():
 	
 	add_to_group("enemies")
-
+	
+	
+func die():
+	
+	
+	
+	queue_free()
+	
 func _physics_process(delta):
 	# Add the gravity.
 	if(health <= 0):
-		queue_free()
+		die()
 	
-	var i = 0
-	
+	var dist = 100000000
+	var v = Vector2()
 	for x in bodies:
-		if(i<1):
+		if((x.global_position-global_position).length_squared() < dist):
 			trg = x.global_position
-			
-			pass
-		i+=1;
+			dist = (x.global_position-global_position).length_squared() 
 		pass
 	
 	if(global_position.x<trg.x):

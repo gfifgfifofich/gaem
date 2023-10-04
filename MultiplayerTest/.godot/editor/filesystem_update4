@@ -10,4 +10,8 @@ res://character_body_2d.tscn
 res://MainMenu.tscn
 res://Tortch.tscn
 res://Particles/Test Particles.tscn
-res://CharacterBody2D.gd
+res://Particles/Test Particles2.tscn
+res://Bleb.gd
+res://Node2D.gd
+res://Bleb.tscn
+res://dagun.tscn

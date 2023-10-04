@@ -60,7 +60,7 @@ func _process(delta):
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_gbe65")
 texture = ExtResource("1_r5wuf")
-lifetime = 0.1
+lifetime = 0.05
 explosiveness = 0.76
 script = SubResource("GDScript_cwhj1")
 
