@@ -34,6 +34,7 @@ scale = Vector2(51.1406, 31.0547)
 texture = ExtResource("3_n8ib7")
 
 [node name="MainMenu" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,12 +96,21 @@ text = "Exit"
 script = ExtResource("2_ja5ob")
 
 [node name="Sprite2D" type="Sprite2D" parent="MainMenu"]
-position = Vector2(574, 128)
-scale = Vector2(0.513184, 0.197266)
+position = Vector2(372, 122)
+scale = Vector2(0.179687, 0.179687)
+texture = ExtResource("5_nqt7p")
+
+[node name="Sprite2D2" type="Sprite2D" parent="MainMenu"]
+position = Vector2(584, 120)
+scale = Vector2(0.179687, 0.179687)
+texture = ExtResource("5_nqt7p")
+
+[node name="Sprite2D3" type="Sprite2D" parent="MainMenu"]
+position = Vector2(796, 117)
+scale = Vector2(0.179687, 0.179687)
 texture = ExtResource("5_nqt7p")
 
 [node name="ServerMenu" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,10 +124,16 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 600.0
+offset_top = 47.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hovered_color = Color(0.321569, 0.52549, 1, 1)
+theme_override_colors/font_selected_color = Color(0, 0.643137, 0, 1)
+theme_override_fonts/font = ExtResource("4_7wefo")
+theme_override_font_sizes/font_size = 18
 item_count = 1
-item_0/text = "Server list placehorder"
+item_0/text = "Localhost 127.0.0.1:25565"
 
 [node name="Join" type="Button" parent="ServerMenu"]
 layout_mode = 0
@@ -333,6 +349,60 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "X"
 
+[node name="ServerNameLineEdit" type="LineEdit" parent="ServerMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -548.0
+offset_right = -364.0
+offset_bottom = 31.0
+grow_horizontal = 0
+placeholder_text = "Server name (Local)"
+
+[node name="IpLineEdit" type="LineEdit" parent="ServerMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -359.0
+offset_right = -175.0
+offset_bottom = 31.0
+grow_horizontal = 0
+placeholder_text = "IP Adress"
+
+[node name="PortLineEdit" type="LineEdit" parent="ServerMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -169.0
+offset_right = -85.0
+offset_bottom = 31.0
+grow_horizontal = 0
+placeholder_text = "Port"
+
+[node name="RemoveServerFromList" type="Button" parent="ServerMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+text = "-"
+
+[node name="AddServerToList" type="Button" parent="ServerMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -71.0
+offset_right = -41.0
+offset_bottom = 30.0
+grow_horizontal = 0
+text = "+"
+
 [node name="SettingsMenu" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -353,6 +423,22 @@ grow_vertical = 2
 [node name="User" type="Control" parent="SettingsMenu/TabContainer"]
 layout_mode = 2
 
+[node name="LineEdit" type="LineEdit" parent="SettingsMenu/TabContainer/User"]
+layout_mode = 1
+offset_left = 9.0
+offset_top = 41.0
+offset_right = 314.0
+offset_bottom = 72.0
+placeholder_text = "Username"
+
+[node name="Label" type="Label" parent="SettingsMenu/TabContainer/User"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 95.0
+offset_bottom = 41.0
+text = "Username:"
+
 [node name="Graphics" type="Control" parent="SettingsMenu/TabContainer"]
 visible = false
 layout_mode = 2
@@ -365,9 +451,22 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="CloseButton" type="Button" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "X"
+
 [connection signal="pressed" from="MainMenu/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/Exit" to="." method="_on_exit_pressed"]
+[connection signal="focus_exited" from="ServerMenu" to="." method="_on_server_menu_focus_exited"]
+[connection signal="item_activated" from="ServerMenu/ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="ready" from="ServerMenu/ItemList" to="." method="_on_item_list_ready"]
 [connection signal="pressed" from="ServerMenu/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="ServerMenu/HostMenuOpen" to="." method="_on_host_menu_open_pressed"]
 [connection signal="pressed" from="ServerMenu/Return" to="." method="_on_return_pressed"]
@@ -375,3 +474,10 @@ layout_mode = 2
 [connection signal="pressed" from="ServerMenu/DirectJoinMenu/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="ServerMenu/HostMenu/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="ServerMenu/HostMenu/HostClose" to="." method="_on_host_close_pressed"]
+[connection signal="pressed" from="ServerMenu/RemoveServerFromList" to="." method="_on_remove_server_from_list_pressed"]
+[connection signal="pressed" from="ServerMenu/AddServerToList" to="." method="_on_add_server_to_list_pressed"]
+[connection signal="tab_selected" from="SettingsMenu/TabContainer" to="." method="_on_tab_container_tab_selected"]
+[connection signal="focus_entered" from="SettingsMenu/TabContainer/User" to="." method="_on_user_focus_entered"]
+[connection signal="ready" from="SettingsMenu/TabContainer/User" to="." method="_on_user_ready"]
+[connection signal="button_down" from="SettingsMenu/CloseButton" to="." method="_on_close_button_button_down"]
+[connection signal="pressed" from="SettingsMenu/CloseButton" to="." method="_on_close_button_pressed"]

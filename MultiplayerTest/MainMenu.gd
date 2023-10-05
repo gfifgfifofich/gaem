@@ -1,5 +1,9 @@
 extends Control
 
+var savePath = "res://prefs.cfg"
+var config = ConfigFile.new()
+var loadResponse = config.load(savePath)
+
 var pl = preload ("res://node_2d.tscn")
 var ui = preload("res://player_interface.tscn")
 
@@ -54,7 +58,7 @@ func _on_connect_pressed():
 	multiplayer.multiplayer_peer = clientPeer;
 	
 	var pli = pl.instantiate()
-	pli.namename = "testName"
+	pli.namename = config.get_value("UserData", "Username", "PlayerDefault")
 	add_child(pli);
 	var uii = ui.instantiate()
 	add_child(uii)
@@ -99,3 +103,95 @@ func _on_host_pressed():
 
 func _on_host_menu_open_pressed():
 	$ServerMenu/HostMenu.visible = true
+
+
+func _on_close_button_pressed():
+	config.set_value("UserData", "Username", $SettingsMenu/TabContainer/User/LineEdit.text)
+	config.save(savePath)
+	$MainMenu.visible = true
+	$SettingsMenu.visible = false
+	
+
+
+func _on_tab_container_tab_selected(tab):
+	pass # Replace with function body.
+
+
+
+
+
+
+
+func _on_user_ready():
+	$SettingsMenu/TabContainer/User/LineEdit.text = config.get_value("UserData", "Username", "PlayerDefault")
+	pass # Replace with function body.
+
+
+func _on_item_list_ready():
+	var serverList = config.get_value("UserData", "ServerList")
+	if serverList == null:
+		return
+	for s in serverList:
+		if(s == "Localhost 127.0.0.1:25565"):
+			continue
+		$ServerMenu/ItemList.add_item(s);
+		
+
+
+func _on_server_menu_focus_exited():
+	var serverArray = []
+	print("saving server list")
+	for i in range(0,$ServerMenu/ItemList.item_count):
+		serverArray.append($ServerMenu/ItemList.get_item_text(i))
+	config.set_value("UserData", "ServerList", serverArray)
+	config.save(savePath)
+
+
+func _on_add_server_to_list_pressed():
+	var ServerNameLine = $ServerMenu/ServerNameLineEdit
+	var ipLine = $ServerMenu/IpLineEdit
+	var portLine = $ServerMenu/PortLineEdit
+	
+	
+	$ServerMenu/ItemList.add_item("{name} {ip}:{port}".format({"name": ServerNameLine.text, "ip": ipLine.text, "port":portLine.text}))
+	ServerNameLine.text = ""
+	ipLine.text = ""
+	portLine.text = ""
+	
+	var serverArray = []
+	print("saving server list")
+	for i in range(0,$ServerMenu/ItemList.item_count):
+		serverArray.append($ServerMenu/ItemList.get_item_text(i))
+	config.set_value("UserData", "ServerList", serverArray)
+	config.save(savePath)
+	
+
+
+
+func _on_remove_server_from_list_pressed():
+	if not $ServerMenu/ItemList.is_anything_selected():
+		return
+	$ServerMenu/ItemList.remove_item($ServerMenu/ItemList.get_selected_items()[0])
+	
+	var serverArray = []
+	print("saving server list")
+	for i in range(0,$ServerMenu/ItemList.item_count):
+		serverArray.append($ServerMenu/ItemList.get_item_text(i))
+	config.set_value("UserData", "ServerList", serverArray)
+	config.save(savePath)
+
+
+func _on_item_list_item_activated(index):
+	var ipPort = $ServerMenu/ItemList.get_item_text(index).split(" ")[1]
+	var ip = ipPort.split(":")[0]
+	var port = int(float(ipPort.split(":")[1]))
+	
+	var clientPeer = ENetMultiplayerPeer.new();
+	clientPeer.create_client(ip, port);
+	multiplayer.multiplayer_peer = clientPeer;
+	
+	var pli = pl.instantiate()
+	pli.namename = config.get_value("UserData", "Username", "PlayerDefault")
+	add_child(pli);
+	var uii = ui.instantiate()
+	add_child(uii)
