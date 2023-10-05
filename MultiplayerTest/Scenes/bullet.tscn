@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj3sd45qfnkbd"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_1dtvo"]
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="1_le4k0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6of5q"]
+radius = 7.0
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_1dtvo")
+
+[node name="Sadsad" type="Sprite2D" parent="."]
+modulate = Color(10, 2, 0.4, 1)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_le4k0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6of5q")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.25, 0.25)
+color = Color(1, 0.2, 0.04, 1)
+shadow_enabled = true
+shadow_filter_smooth = 7.5
+texture = ExtResource("1_le4k0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

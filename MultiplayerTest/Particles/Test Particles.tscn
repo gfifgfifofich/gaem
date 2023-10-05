@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dplvn3b2oalji"]
 
-[ext_resource type="Script" path="res://GPUParticles2D.gd" id="1_uehq8"]
-[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://sadsad.png" id="2_na7tg"]
+[ext_resource type="Script" path="res://Scripts/GPUParticles2D.gd" id="1_uehq8"]
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="2_na7tg"]
 
 [sub_resource type="Gradient" id="Gradient_ol0s5"]
 colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)

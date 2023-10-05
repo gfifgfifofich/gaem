@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfcraljihyp71"]
+
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_sw3uy"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_sw3uy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 777.0
+offset_right = 411.0
+offset_bottom = 808.0
+text = "Serv"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 200.0
+offset_right = 290.0
+offset_bottom = 231.0
+text = "Join game"
+
+[node name="TextEdit" type="TextEdit" parent="Control"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 80.0
+offset_right = 290.0
+offset_bottom = 110.0
+placeholder_text = "Nickname"
+
+[node name="TextEdit2" type="TextEdit" parent="Control"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 140.0
+offset_right = 290.0
+offset_bottom = 170.0
+text = "127.0.0.1"
+placeholder_text = "Ip"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="button_down" from="Control/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Control/Button2" to="." method="_on_button_2_button_down"]

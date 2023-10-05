@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dj1y631gobifs"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_fs7tg"]
+[ext_resource type="Texture2D" uid="uid://dntvxxapo818i" path="res://Sprites/sus.png" id="2_qmh8e"]
+[ext_resource type="FontFile" uid="uid://c8yrhsh1lmxyr" path="res://Visitor Rus.ttf" id="3_jomc4"]
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="5_xbnen"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1wki"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="Theme" id="Theme_mlrbt"]
+default_font = ExtResource("3_jomc4")
+default_font_size = 500
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jyjov"]
+polygon = PackedVector2Array(-12, -8, 12, -8, 12, -4, 20, -4, 20, 0, 24, 0, 24, 4, 28, 4, 28, 8, 32, 12, 28, 68, -28, 68, -28, 4)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_fs7tg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_f1wki")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1)
+texture = ExtResource("2_qmh8e")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -7.0
+offset_top = -14.0
+offset_right = 1164.0
+offset_bottom = 548.0
+scale = Vector2(0.012, 0.012)
+theme = SubResource("Theme_mlrbt")
+text = "name"
+uppercase = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+scale = Vector2(0.25, 0.25)
+occluder = SubResource("OccluderPolygon2D_jyjov")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2.48312, 2.48312)
+color = Color(0.643137, 0.643137, 0.643137, 1)
+energy = 0.7
+shadow_enabled = true
+texture = ExtResource("5_xbnen")
+
+[node name="Weapons" type="Node2D" parent="."]
+position = Vector2(0, 9.315)
