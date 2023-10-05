@@ -136,7 +136,7 @@ func UpdatePlayers(ids):
 		for x in range (4,get_child_count()):
 			if get_child(x).id not in ids && get_child(x).id !=0:
 				get_child(x).health = -10
-				get_child(x)._die()
+				#get_child(x)._die()
 	pass
 
 @rpc("any_peer")

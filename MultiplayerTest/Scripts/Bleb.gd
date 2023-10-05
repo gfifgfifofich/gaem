@@ -58,16 +58,12 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	if(body.name.length()>=6):
-		var nam = str(body.name)
-		if(nam[0] == 'P' and nam[1] == 'l' and nam[2] == 'a' and nam[3] == 'y' and nam[4] == 'e' and nam[5] == 'r'):
+	if(body.is_in_group("players")):
 			bodies.append(body)
 	pass # Replace with function body.
 
 
 func _on_area_2d_body_exited(body):
-	if(body.name.length()>=6):
-		var nam = str(body.name)
-		if(nam[0] == 'P' and nam[1] == 'l' and nam[2] == 'a' and nam[3] == 'y' and nam[4] == 'e' and nam[5] == 'r'):
+	if(body.is_in_group("players")):
 			bodies.erase(body)
 	pass # Replace with function body.

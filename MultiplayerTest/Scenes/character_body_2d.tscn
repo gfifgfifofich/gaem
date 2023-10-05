@@ -16,19 +16,19 @@ default_font_size = 500
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jyjov"]
 polygon = PackedVector2Array(-12, -8, 12, -8, 12, -4, 20, -4, 20, 0, 24, 0, 24, 4, 28, 4, 28, 8, 32, 12, 28, 68, -28, 68, -28, 4)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_fs7tg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["players"]]
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_f1wki")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="." groups=["players"]]
 texture_filter = 1
 position = Vector2(0, 1)
 texture = ExtResource("2_qmh8e")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." groups=["players"]]
 texture_filter = 1
 offset_left = -7.0
 offset_top = -14.0
@@ -39,22 +39,22 @@ theme = SubResource("Theme_mlrbt")
 text = "name"
 uppercase = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["players"]]
 enabled = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." groups=["players"]]
 visible = false
 scale = Vector2(0.25, 0.25)
 occluder = SubResource("OccluderPolygon2D_jyjov")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." groups=["players"]]
 scale = Vector2(2.48312, 2.48312)
 color = Color(0.643137, 0.643137, 0.643137, 1)
 energy = 0.7
 shadow_enabled = true
 texture = ExtResource("5_xbnen")
 
-[node name="Weapons" type="Node2D" parent="."]
+[node name="Weapons" type="Node2D" parent="." groups=["players"]]
 position = Vector2(0, 9.315)
