@@ -46,8 +46,8 @@ func sendCreated(id, idis, names, enemiesType,enemiesID,enemyHealth,enemyPositio
 		print("created player")
 		created = true;
 		for x in range(0,idis.size()):
-			if id != x:
-				localaddPlayer(idis[x],createdPlayerNames[x])
+			if id != idis[x]:
+				localaddPlayer(idis[x],names[x])
 		
 		for x in range(0,enemiesID.size()):
 			CreateEmeny(enemiesType[x],enemyPosition[x],enemiesID[x])
@@ -75,7 +75,7 @@ func addPlayer(id, nick):
 		
 		var pli = pl.instantiate();
 		
-		pli.position = Vector2(0,0)
+		pli.position = Vector2(-576,262)
 		pli.id = multiplayer.get_remote_sender_id();
 		pli.Nick = nick;
 		add_child(pli,true);
@@ -144,23 +144,29 @@ func CreateEmeny(enID,posiion,id):
 	if(id not in CreatedEnemyIds):
 		
 		var inst = enemyPreloads[enID].instantiate();
-		inst.position= position;
+		inst.position= posiion;
+		inst.trg= posiion;
 		inst.id = id;
 		CreatedEnemyIds.append(id)
 		$Enemies.add_child(inst);
 	pass
 @rpc("any_peer")
-func UpdateEmenies(id,pos,vel,health):
+func UpdateEmenies(id,pos,vel,health,trg,type):
 	if(!multiplayer.is_server()):
+		var exists = false;
 		for i in range(0,$Enemies.get_child_count()):
 			if($Enemies.get_child(i).id == id):
 				$Enemies.get_child(id).position = pos;
 				$Enemies.get_child(id).velocity = vel;
 				$Enemies.get_child(id).health = health;
-			pass
-		
-		pass
-	pass
+				$Enemies.get_child(id).trg = trg;
+				$Enemies.get_child(id).DeathT = 2.0;
+				exists = true
+		if(!exists):
+			CreateEmeny(type,pos,id)
+			$Enemies.get_child($Enemies.get_child_count()-1).health = health
+			$Enemies.get_child($Enemies.get_child_count()-1).trg = trg
+			
 
 @rpc("any_peer")
 func EnDeadge(id):
@@ -173,12 +179,17 @@ func EnDeadge(id):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	CreatedEnemyIds.resize($Enemies.get_child_count())
+	for i in range(0,$Enemies.get_child_count()):
+		CreatedEnemyIds[i] = $Enemies.get_child(i).id
 	
 	if(multiplayer.is_server()):
 		
 		if(Input.is_action_just_pressed("1")):
-			CreateEmeny(0,Vector2(-100.0,250),$Enemies.get_child_count())
-			rpc("CreateEmeny",0,Vector2(-100.0,250),$Enemies.get_child_count())
+			
+			var a=Vector2(randf_range(-500,200),randf_range(-100,200))
+			CreateEmeny(0,a,$Enemies.get_child_count())
+			rpc("CreateEmeny",0,a,$Enemies.get_child_count())
 		var daids = []
 		for x in range (4,get_child_count()):
 			daids.append(get_child(x).id);
@@ -191,14 +202,15 @@ func _process(delta):
 		enemyHealths.resize($Enemies.get_child_count())
 		enemyPositions.resize($Enemies.get_child_count())
 		enemyTrgs.resize($Enemies.get_child_count())
+		CreatedEnemyIds.resize($Enemies.get_child_count())
 		for i in range(0,$Enemies.get_child_count()):
 			enemiesIDs[i]=$Enemies.get_child(i).id
 			enemiesTypes[i]=$Enemies.get_child(i).EnemyID
 			enemyHealths[i]=$Enemies.get_child(i).health
 			enemyPositions[i]=$Enemies.get_child(i).position
 			enemyTrgs[i]=$Enemies.get_child(i).trg
-			
-			rpc("UpdateEmenies",$Enemies.get_child(i).id,$Enemies.get_child(i).position,$Enemies.get_child(i).velocity,$Enemies.get_child(i).health)
+			CreatedEnemyIds[i] = $Enemies.get_child(i).id
+			rpc("UpdateEmenies",$Enemies.get_child(i).id,$Enemies.get_child(i).position,$Enemies.get_child(i).velocity,$Enemies.get_child(i).health,$Enemies.get_child(i).trg,$Enemies.get_child(i).EnemyID)
 			if($Enemies.get_child(i).health<=0):
 				EnDeadge($Enemies.get_child(i).id)
 				rpc("EnDeadge",$Enemies.get_child(i).id)

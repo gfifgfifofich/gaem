@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var bodies = []
 var trg = Vector2(0,0)
 var health = 100
+var DeathT = 2.0
 func _ready():
 	
 	add_to_group("enemies")
@@ -22,7 +23,7 @@ func die():
 	
 func _physics_process(delta):
 	# Add the gravity.
-	if(health <= 0):
+	if(health <= 0 || DeathT<=0):
 		die()
 	
 	var dist = 100000000
@@ -32,7 +33,8 @@ func _physics_process(delta):
 			trg = x.global_position
 			dist = (x.global_position-global_position).length_squared() 
 		pass
-	
+	if(!multiplayer.is_server()):
+		DeathT-=delta
 	if(global_position.x<trg.x):
 		velocity.x = SPEED;
 	

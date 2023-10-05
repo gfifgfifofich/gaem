@@ -4,8 +4,8 @@
 [ext_resource type="TileSet" uid="uid://dbjli8e8vwedl" path="res://Sprites/TileMaps/node_2d.tres" id="2_2xt1w"]
 [ext_resource type="TileSet" uid="uid://dan5ekv8nb0uk" path="res://Sprites/TileMaps/node_2d no shadows.tres" id="3_hndvr"]
 [ext_resource type="PackedScene" uid="uid://dr81vk7yu8pqw" path="res://Scenes/Tortch.tscn" id="5_37ga8"]
-[ext_resource type="Environment" uid="uid://bdnc0fed2mei1" path="res://new_environment.tres" id="5_531lb"]
-[ext_resource type="PackedScene" uid="uid://45vq2olifcx4" path="res://portal.tscn" id="6_o12yd"]
+[ext_resource type="Environment" uid="uid://bdnc0fed2mei1" path="res://Sprites/TileMaps/new_environment.tres" id="5_531lb"]
+[ext_resource type="PackedScene" uid="uid://45vq2olifcx4" path="res://Scenes/portal.tscn" id="6_o12yd"]
 [ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="7_0fa2o"]
 
 [node name="Node2D" type="Node2D"]

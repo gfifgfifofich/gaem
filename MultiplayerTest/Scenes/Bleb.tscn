@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbqi7rpw3ji8x"]
 
+[ext_resource type="Script" path="res://Scripts/Bleb.gd" id="1_2bgb4"]
 [ext_resource type="Texture2D" uid="uid://wm3i6sj2vbfw" path="res://Particles/bleb.png" id="1_wtpj0"]
-[ext_resource type="Script" path="res://Bleb.gd" id="1_x3tq5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3qx3"]
 radius = 6.0
@@ -11,7 +11,7 @@ height = 18.0
 radius = 113.159
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_x3tq5")
+script = ExtResource("1_2bgb4")
 
 [node name="Bleb" type="Sprite2D" parent="."]
 texture_filter = 1

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_fs7tg"]
 [ext_resource type="Texture2D" uid="uid://dntvxxapo818i" path="res://Sprites/sus.png" id="2_qmh8e"]
-[ext_resource type="FontFile" uid="uid://c8yrhsh1lmxyr" path="res://Visitor Rus.ttf" id="3_jomc4"]
+[ext_resource type="FontFile" uid="uid://c8yrhsh1lmxyr" path="res://Fonts/Visitor Rus.ttf" id="3_jomc4"]
 [ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="5_xbnen"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1wki"]
