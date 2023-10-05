@@ -200,3 +200,24 @@ func _on_item_list_item_activated(index):
 	add_child(pli);
 	var uii = ui.instantiate()
 	add_child(uii)
+
+
+func _on_check_button_pressed():
+	
+	var isPressed = $SettingsMenu/TabContainer/Graphics/CheckButton.button_pressed
+	if isPressed:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else :
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	config.set_value("UserData", "Fullscreen", isPressed)
+	config.save(savePath)
+
+
+func _on_check_button_ready():
+	var isPressed = config.get_value("UserData", "Fullscreen")
+	if isPressed:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else :
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	pass # Replace with function body.

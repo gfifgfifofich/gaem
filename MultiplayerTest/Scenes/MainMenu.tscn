@@ -417,6 +417,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="User" type="Control" parent="SettingsMenu/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="SettingsMenu/TabContainer/User"]
@@ -438,6 +439,14 @@ text = "Username:"
 [node name="Graphics" type="Control" parent="SettingsMenu/TabContainer"]
 visible = false
 layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="SettingsMenu/TabContainer/Graphics"]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 32.0
+offset_right = 153.0
+offset_bottom = 72.0
+text = "Fullscreen"
 
 [node name="Audio" type="Control" parent="SettingsMenu/TabContainer"]
 visible = false
@@ -475,5 +484,7 @@ text = "X"
 [connection signal="tab_selected" from="SettingsMenu/TabContainer" to="." method="_on_tab_container_tab_selected"]
 [connection signal="focus_entered" from="SettingsMenu/TabContainer/User" to="." method="_on_user_focus_entered"]
 [connection signal="ready" from="SettingsMenu/TabContainer/User" to="." method="_on_user_ready"]
+[connection signal="pressed" from="SettingsMenu/TabContainer/Graphics/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="ready" from="SettingsMenu/TabContainer/Graphics/CheckButton" to="." method="_on_check_button_ready"]
 [connection signal="button_down" from="SettingsMenu/CloseButton" to="." method="_on_close_button_button_down"]
 [connection signal="pressed" from="SettingsMenu/CloseButton" to="." method="_on_close_button_pressed"]
