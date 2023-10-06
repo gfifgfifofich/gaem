@@ -99,7 +99,7 @@ func _on_host_pressed():
 	$MainMenu.visible = false;
 	$SettingsMenu.visible = false;
 	var pli = pl.instantiate()
-	pli.namename = "testName"
+	pli.namename = "host"
 	add_child(pli);
 	
 

@@ -117,7 +117,7 @@ func _physics_process(delta):
 		if(altshoot):
 			$Weapons.get_child(1).shoot();
 	
-	if(id !=0):
+	if((id !=0) && !(id==-1 && multiplayer.is_server())):
 		
 		if not is_on_floor():
 			velocity.y += gravity * delta
@@ -166,24 +166,23 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	if(id==0):
-		Nick = get_parent().namename
-		$Camera2D.enabled = true
+	Nick = get_parent().namename
+	$Camera2D.enabled = true
 	if(!multiplayer.is_server() and multiplayer.connected_to_server):
 		if(!get_parent().created):
 			
 			get_parent().rpc("addPlayer",1,Nick)
 			#print ("not obamka")
 			rd +=1;
-			
-		if(id==0):
-			get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
+		
+		get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
 	
 	if(multiplayer.is_server()):
 		if(!get_parent().created):
 			get_parent().createdPlayers.append(0)
 			get_parent().createdPlayerNames.append("host")
 			get_parent().created=true;
+		get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
 		
 		#if(id==0):
 		#	get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)

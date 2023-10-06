@@ -16,10 +16,12 @@ var namename = "stock"
 func _ready():
 	enemyPreloads.append(en1)
 	
-	
-	addPlayer(1,namename);
-	rpc("addPlayer",1,namename)
-	
+	if(!multiplayer.is_server()):
+		addPlayer(1,namename);
+		rpc("addPlayer",1,namename)
+	else:
+		localaddPlayer(-1,namename);
+		
 	pass
 
 var createdPlayers = [];
@@ -82,7 +84,7 @@ func pog(vel, pos,MousePos,shoot,altshoot,weapons):
 	#if(multiplayer.is_server()):
 	
 	for x in range (4,get_child_count()):
-		if get_child(x).id == multiplayer.get_remote_sender_id() and get_child(x).id != 0:
+		if (get_child(x).id == multiplayer.get_remote_sender_id() and get_child(x).id != 0) || ((get_child(x).id == -1 and multiplayer.get_remote_sender_id() ==1)):
 			get_child(x).position = pos
 			get_child(x).velocity = vel
 			get_child(x).MousePos = MousePos
@@ -164,6 +166,9 @@ func _process(delta):
 			var a=Vector2(randf_range(-500,200),randf_range(-100,200))
 			CreateEmeny(0,a,$Enemies.get_child_count())
 			rpc("CreateEmeny",0,a,$Enemies.get_child_count())
+		
+		
+		
 		var daids = []
 		for x in range (4,get_child_count()):
 			daids.append(get_child(x).id);
