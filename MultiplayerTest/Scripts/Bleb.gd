@@ -16,14 +16,22 @@ func _ready():
 	
 	
 func die():
-	
-	
-	
+	get_parent().get_parent().CreatedEnemyIds.erase(id);
 	queue_free()
-	
+
 func _physics_process(delta):
+	$ProgressBar.value = health
+	
+	if $ProgressBar.value >= 100:
+		$ProgressBar.visible = false;
+	else:
+		$ProgressBar.visible = true;
+			
 	# Add the gravity.
-	if(health <= 0 || DeathT<=0):
+	if(multiplayer.is_server()):
+		if(health <= 0):
+			die()
+	if(DeathT<=0):
 		die()
 	
 	var dist = 100000000

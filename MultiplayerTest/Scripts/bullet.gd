@@ -28,5 +28,8 @@ func _on_area_2d_body_entered(body):
 		var nam = str(body.name)
 		if(nam[0] == 'P' and nam[1] == 'l' and nam[2] == 'a' and nam[3] == 'y' and nam[4] == 'e' and nam[5] == 'r'):
 			body.health -= 10;
+	
+	if(body.is_in_group("enemies")):
+		body.health -= 10;
 	queue_free();
 	pass # Replace with function body.

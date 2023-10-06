@@ -19,7 +19,10 @@ func _process(delta):
 	t+=delta
 	$Sprite2D2.material.set_shader_parameter("line_color", Color((sin(t*1)+1.0)*0.125,(sin(t*0.3)+1.0)*0.125,(sin(t*0.5)+1.0)*0.125,1.0))
 	
-	pass
+	if Input.is_action_just_pressed("Back") and $MainMenu.visible == false and $SettingsMenu.visible == false and $ServerMenu.visible == false:
+		$EscapeMenu.visible = true;
+	
+	
 
 
 func _on_exit_pressed():
@@ -215,9 +218,14 @@ func _on_check_button_pressed():
 
 
 func _on_check_button_ready():
-	var isPressed = config.get_value("UserData", "Fullscreen")
+	var isPressed = config.get_value("UserData", "Fullscreen", false)
 	if isPressed:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else :
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	pass # Replace with function body.
+
+
+func _on_resume_button_pressed():
+	$EscapeMenu.visible = false
 	pass # Replace with function body.

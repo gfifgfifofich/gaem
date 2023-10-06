@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbqi7rpw3ji8x"]
+[gd_scene load_steps=6 format=3 uid="uid://dbqi7rpw3ji8x"]
 
 [ext_resource type="Script" path="res://Scripts/Bleb.gd" id="1_2bgb4"]
 [ext_resource type="Texture2D" uid="uid://wm3i6sj2vbfw" path="res://Particles/bleb.png" id="1_wtpj0"]
@@ -9,6 +9,9 @@ height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rylc3"]
 radius = 113.159
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5rqy"]
+bg_color = Color(0.447059, 0.682353, 1, 1)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_2bgb4")
@@ -27,6 +30,15 @@ shape = SubResource("CapsuleShape2D_i3qx3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_rylc3")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -17.0
+offset_top = -17.0
+offset_right = 17.0
+offset_bottom = -13.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_i5rqy")
+fill_mode = 1
+show_percentage = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

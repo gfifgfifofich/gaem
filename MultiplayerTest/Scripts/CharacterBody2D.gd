@@ -117,7 +117,7 @@ func _physics_process(delta):
 		if(altshoot):
 			$Weapons.get_child(1).shoot();
 	
-	if(multiplayer.is_server() or id !=0 ):
+	if(id !=0):
 		
 		if not is_on_floor():
 			velocity.y += gravity * delta
@@ -178,6 +178,15 @@ func _physics_process(delta):
 			
 		if(id==0):
 			get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
+	
+	if(multiplayer.is_server()):
+		if(!get_parent().created):
+			get_parent().createdPlayers.append(0)
+			get_parent().createdPlayerNames.append("host")
+			get_parent().created=true;
+		
+		#if(id==0):
+		#	get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
 		
 	
 	$Label.text = Nick

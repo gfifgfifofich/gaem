@@ -29,7 +29,7 @@ func altshoot():
 	$Sprite2D/PointLight2D.color = Color.DARK_RED
 	$Sprite2D.scale.x = 0.1
 	$Sprite2D.visible =true
-	$Sprite2D.scale.y = 0.078 * (((($RayCast2D.get_collision_point() - global_position)).length()-(global_position - $Sprite2D.global_position).length())*0.2 )
+	$Sprite2D.scale.y = 0.039 * (((($RayCast2D.get_collision_point() - global_position)).length()-(global_position - $Sprite2D.global_position).length())*0.2 )
 	
 	pass
 

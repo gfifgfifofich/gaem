@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://2uvyrinrx473"]
+[gd_scene load_steps=9 format=3 uid="uid://2uvyrinrx473"]
 
 [ext_resource type="Texture2D" uid="uid://b8xb1wko766uj" path="res://Sprites/icon.svg" id="1_0eqsc"]
 [ext_resource type="Texture2D" uid="uid://2bvvl0q80aue" path="res://Sprites/LaserPencil.png" id="1_ldftt"]
 [ext_resource type="Script" path="res://Scripts/dagun2.gd" id="2_5ceb0"]
 [ext_resource type="Shader" path="res://Scenes/dagun.gdshader" id="4_mi1nr"]
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="5_q1rwh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chdtc"]
 size = Vector2(120, 115.385)
@@ -26,13 +27,6 @@ shader_parameter/progress = 0.75
 shader_parameter/y_offset = 0.0
 shader_parameter/fixed_edge_size = 0.5
 shader_parameter/noise_scale = Vector2(0.475, 1)
-
-[sub_resource type="Gradient" id="Gradient_y4pq2"]
-offsets = PackedFloat32Array(0, 0.522581, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_b1bme"]
-gradient = SubResource("Gradient_y4pq2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cbpb6"]
 size = Vector2(8, 4)
@@ -75,9 +69,11 @@ texture = ExtResource("1_0eqsc")
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
 position = Vector2(0, -63.7179)
-scale = Vector2(4, 128)
+scale = Vector2(22.11, 0.55)
 color = Color(0.470588, 0.666667, 1, 1)
-texture = SubResource("GradientTexture1D_b1bme")
+energy = 2.74
+shadow_enabled = true
+texture = ExtResource("5_q1rwh")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(0, -1500)

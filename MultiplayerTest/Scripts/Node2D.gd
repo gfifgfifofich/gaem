@@ -17,17 +17,8 @@ func _ready():
 	enemyPreloads.append(en1)
 	
 	
-	if(!multiplayer.is_server()):
-		
-		addPlayer(1,namename);
-		
-		
-		rpc("addPlayer",1,namename)
-	else:
-		$Objects/PointLight2D.editor_only = false;
-		pass
-		#$Objects.visible=false
-		#$Objects.queue_free()
+	addPlayer(1,namename);
+	rpc("addPlayer",1,namename)
 	
 	pass
 
@@ -54,8 +45,6 @@ func sendCreated(id, idis, names, enemiesType,enemiesID,enemyHealth,enemyPositio
 			$Enemies.get_child($Enemies.get_child_count()-1).health = enemyHealth[x]
 			$Enemies.get_child($Enemies.get_child_count()-1).trg = enemyTrg[x]
 
-var sus = "12345"
-var createdids = -1;
 func localaddPlayer(id, nick):
 	if(id not in createdPlayers):
 		var pli = pl.instantiate()
@@ -70,29 +59,19 @@ func localaddPlayer(id, nick):
 
 @rpc("any_peer")
 func addPlayer(id, nick):
+	if(multiplayer.get_remote_sender_id() not in createdPlayers):
+		
+		var pli = pl.instantiate();
+		pli.position = Vector2(-576,262)
+		
+		pli.id = multiplayer.get_remote_sender_id();
+		pli.Nick = nick;
+		add_child(pli,true);
+		createdPlayers.append(pli.id)
+		createdPlayerNames.append(pli.Nick)
 	
-	if(!multiplayer.is_server() and multiplayer.get_remote_sender_id() not in createdPlayers):
-		
-		var pli = pl.instantiate();
-		
-		pli.position = Vector2(-576,262)
-		pli.id = multiplayer.get_remote_sender_id();
-		pli.Nick = nick;
-		add_child(pli,true);
-		createdids = pli.id
-		createdPlayers.append(pli.id)
-		createdPlayerNames.append(pli.Nick)
-		
-	elif(multiplayer.get_remote_sender_id() not in createdPlayers):
-		
-		var pli = pl.instantiate();
-		pli.position = Vector2(-576,262)
-		pli.id = multiplayer.get_remote_sender_id();
-		pli.Nick = nick;
-		add_child(pli,true);
-		createdPlayers.append(pli.id)
-		createdPlayerNames.append(pli.Nick)
-		
+	
+	
 	if(multiplayer.is_server()):
 		rpc("sendCreated",multiplayer.get_remote_sender_id(),createdPlayers,createdPlayerNames,enemiesTypes,enemiesIDs,enemyHealths,enemyPositions,enemyTrgs)
 	#players.append(pli);
@@ -136,31 +115,29 @@ func UpdatePlayers(ids):
 		for x in range (4,get_child_count()):
 			if get_child(x).id not in ids && get_child(x).id !=0:
 				get_child(x).health = -10
-				#godoget_child(x)._die()
 	pass
 
 @rpc("any_peer")
 func CreateEmeny(enID,posiion,id):
 	if(id not in CreatedEnemyIds):
-		
 		var inst = enemyPreloads[enID].instantiate();
 		inst.position= posiion;
 		inst.trg= posiion;
 		inst.id = id;
 		CreatedEnemyIds.append(id)
 		$Enemies.add_child(inst);
-	pass
+
 @rpc("any_peer")
 func UpdateEmenies(id,pos,vel,health,trg,type):
 	if(!multiplayer.is_server()):
 		var exists = false;
 		for i in range(0,$Enemies.get_child_count()):
 			if($Enemies.get_child(i).id == id):
-				$Enemies.get_child(id).position = pos;
-				$Enemies.get_child(id).velocity = vel;
-				$Enemies.get_child(id).health = health;
-				$Enemies.get_child(id).trg = trg;
-				$Enemies.get_child(id).DeathT = 2.0;
+				$Enemies.get_child(i).position = pos;
+				$Enemies.get_child(i).velocity = vel;
+				$Enemies.get_child(i).health = health;
+				$Enemies.get_child(i).trg = trg;
+				$Enemies.get_child(i).DeathT = 2.0;
 				exists = true
 		if(!exists):
 			CreateEmeny(type,pos,id)
@@ -172,16 +149,13 @@ func UpdateEmenies(id,pos,vel,health,trg,type):
 func EnDeadge(id):
 	for i in range(0,$Enemies.get_child_count()):
 		if($Enemies.get_child(i).id == id):
-			CreatedEnemyIds.erase(id)
+			CreatedEnemyIds.erase(id);
 			$Enemies.get_child(i).die()
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	CreatedEnemyIds.resize($Enemies.get_child_count())
-	for i in range(0,$Enemies.get_child_count()):
-		CreatedEnemyIds[i] = $Enemies.get_child(i).id
 	
 	if(multiplayer.is_server()):
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://1771o822402k"]
+[gd_scene load_steps=9 format=3 uid="uid://1771o822402k"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_vpbrq"]
 [ext_resource type="Shader" path="res://Shaders/MainMenu.gdshader" id="2_duqfj"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://c7x1fkfgyftgd" path="res://Fonts/BruceForeverRegular-X3jd2.ttf" id="4_ptai0"]
 [ext_resource type="Script" path="res://Scripts/Settings.gd" id="5_cp75b"]
 [ext_resource type="Script" path="res://Scripts/Exit.gd" id="6_qe2kx"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayer.gd" id="7_vxvsn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6yqbq"]
 shader = ExtResource("2_duqfj")
@@ -417,7 +418,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="User" type="Control" parent="SettingsMenu/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="SettingsMenu/TabContainer/User"]
@@ -466,6 +466,61 @@ offset_bottom = 32.0
 grow_horizontal = 0
 text = "X"
 
+[node name="EscapeMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="EscapeMenu"]
+visible = false
+script = ExtResource("7_vxvsn")
+
+[node name="SettingsButton" type="Button" parent="EscapeMenu/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -60.0
+offset_right = 295.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+
+[node name="MainMenuButton" type="Button" parent="EscapeMenu/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = 80.0
+offset_right = 295.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+
+[node name="ResumeButton" type="Button" parent="EscapeMenu/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -200.0
+offset_right = 295.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+
 [connection signal="pressed" from="MainMenu/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/Exit" to="." method="_on_exit_pressed"]
@@ -488,3 +543,4 @@ text = "X"
 [connection signal="ready" from="SettingsMenu/TabContainer/Graphics/CheckButton" to="." method="_on_check_button_ready"]
 [connection signal="button_down" from="SettingsMenu/CloseButton" to="." method="_on_close_button_button_down"]
 [connection signal="pressed" from="SettingsMenu/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="EscapeMenu/CanvasLayer/ResumeButton" to="." method="_on_resume_button_pressed"]
