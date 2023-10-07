@@ -8,3 +8,4 @@ res://Scenes/grenade_canon.tscn
 res://Particles/explosion.tscn
 res://Sprite2D.gd
 res://Scenes/character_body_2d.tscn
+res://Scripts/CharacterBody2D.gd

@@ -123,18 +123,14 @@ func _physics_process(delta):
 	MousePos = get_global_mouse_position();
 	
 	if(Input.is_action_just_pressed("1")):
-		yay+=1;
-	if(yay >=4):
-		yay =0
-	if yay ==0:
-		CurrentWeapons = [1,-1]
-	if yay ==1:
-		CurrentWeapons = [1,0]
-	if yay ==2:
-		CurrentWeapons = [-1,-1]
-	if yay ==3:
-		CurrentWeapons = [2,-1]
+		CurrentWeapons[0]+=1;
+	if(Input.is_action_just_pressed("2")):
+		CurrentWeapons[1]+=1;
 	
+	if(CurrentWeapons[0]>Global.WeaponsArr.size()-1):
+		CurrentWeapons[0] =-1;
+	if(CurrentWeapons[1]>Global.WeaponsArr.size()-1):
+		CurrentWeapons[1] =-1;
 	
 	if(Input.is_action_pressed("MainAttack")):
 		shoot = true;
