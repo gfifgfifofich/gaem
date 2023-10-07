@@ -14,6 +14,7 @@ var CreatedEnemyIds =[]
 var namename = "stock"
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.MainNode = self;
 	enemyPreloads.append(en1)
 	
 	if(!multiplayer.is_server()):
@@ -160,7 +161,6 @@ func EnDeadge(id):
 func _process(delta):
 	
 	if(multiplayer.is_server()):
-		print(Global.gvariableEboai);
 		if(Input.is_action_just_pressed("1")):
 			
 			var a=Vector2(randf_range(-500,200),randf_range(-100,200))
