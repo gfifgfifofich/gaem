@@ -4,7 +4,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var bodies = []
 var damage : int = 70
 var lifeTime = 0.0;
+var timeToExplode = 3.0;
 var particle = preload("res://Particles/Test Particles.tscn")
+var explosion = preload("res://Particles/explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,13 +16,21 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	
+	velocity.y += gravity * delta
 	
 	lifeTime += delta
 	
-	if(lifeTime < 7.0):
+	$ProgressBar.value = (lifeTime/timeToExplode ) * 100
+	
+	move_and_slide()
+	
+	if(lifeTime < timeToExplode ):
 		return
+		
+	var explI = explosion.instantiate()
+	explI.global_position = position
+	Global.ObjectsNode.add_child(explI)
 	
 	for b in bodies:
 		if(!b.is_in_group("players")):
@@ -29,6 +39,8 @@ func _process(delta):
 			pi.global_position = b.position
 			pi.scale = Vector2(0.3,0.3)
 			Global.ObjectsNode.add_child(pi)
+	
+	queue_free()
 	
 
 
@@ -46,3 +58,6 @@ func _on_area_2d_body_exited(body):
 		#bodies.erase(body)
 	if(body.is_in_group("enemies")):
 			bodies.erase(body)
+
+
+

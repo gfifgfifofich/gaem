@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1h41wtwnlu0d"]
+[gd_scene load_steps=6 format=3 uid="uid://b1h41wtwnlu0d"]
 
 [ext_resource type="Texture2D" uid="uid://iqw7gtf4awjv" path="res://Sprites/65654.png" id="1_4f2er"]
 [ext_resource type="Script" path="res://Sprite2D.gd" id="2_2jvpn"]
@@ -9,8 +9,12 @@ radius = 74.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3auf5"]
 radius = 9.05539
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mmpu"]
+bg_color = Color(0.639216, 0, 0, 1)
+
 [node name="Grenade" type="CharacterBody2D"]
 texture_filter = 1
+slide_on_ceiling = false
 script = ExtResource("2_2jvpn")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -23,3 +27,15 @@ shape = SubResource("CircleShape2D_3auf5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4f2er")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -28.0
+offset_top = -12.0
+offset_right = 28.0
+offset_bottom = -8.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_0mmpu")
+fill_mode = 1
+show_percentage = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

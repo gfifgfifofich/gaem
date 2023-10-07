@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxm6yady31hvw"]
+
+[ext_resource type="Texture2D" uid="uid://bwnc1eibumhva" path="res://Sprites/sadsdassssdsdas66666677777777777777777.png" id="1_3n6ao"]
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="1_hdhaj"]
+[ext_resource type="Script" path="res://Scripts/GPUParticles2D.gd" id="2_28skb"]
+
+[sub_resource type="Gradient" id="Gradient_ol0s5"]
+offsets = PackedFloat32Array(0, 0.622222, 1)
+colors = PackedColorArray(0.130668, 0.610149, 0, 1, 0.516235, 0.620929, 0.26823, 1, 0.623416, 0.750066, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q3os2"]
+gradient = SubResource("Gradient_ol0s5")
+
+[sub_resource type="Curve" id="Curve_n55ql"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.108434, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_egdmq"]
+curve = SubResource("Curve_n55ql")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gbe65"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 50, 0)
+initial_velocity_min = 18.78
+initial_velocity_max = 85.97
+angular_velocity_min = -265.01
+angular_velocity_max = 68.21
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.15
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_egdmq")
+color_ramp = SubResource("GradientTexture1D_q3os2")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+scale = Vector2(0.3, 0.3)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_gbe65")
+texture = ExtResource("1_3n6ao")
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.76
+script = ExtResource("2_28skb")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.23, 0.23)
+color = Color(2, 0.8, 0.2, 1)
+shadow_enabled = true
+texture = ExtResource("1_hdhaj")
+texture_scale = 3.3
