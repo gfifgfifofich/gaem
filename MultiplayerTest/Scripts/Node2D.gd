@@ -175,6 +175,14 @@ func _process(delta):
 			rpc("UpdateHealth",get_child(x).id, get_child(x).health)
 		rpc("UpdatePlayers",daids);
 		
+		var iii = 0
+		while iii < $Enemies.get_child_count():
+			if($Enemies.get_child(iii).health<=0):
+				EnDeadge($Enemies.get_child(iii).id)
+				rpc("EnDeadge",$Enemies.get_child(iii).id)
+				iii+=1;
+			else:
+				iii+=1;
 		
 		enemiesIDs.resize($Enemies.get_child_count())
 		enemiesTypes.resize($Enemies.get_child_count())
@@ -190,9 +198,7 @@ func _process(delta):
 			enemyTrgs[i]=$Enemies.get_child(i).trg
 			CreatedEnemyIds[i] = $Enemies.get_child(i).id
 			rpc("UpdateEmenies",$Enemies.get_child(i).id,$Enemies.get_child(i).position,$Enemies.get_child(i).velocity,$Enemies.get_child(i).health,$Enemies.get_child(i).trg,$Enemies.get_child(i).EnemyID)
-			if($Enemies.get_child(i).health<=0):
-				EnDeadge($Enemies.get_child(i).id)
-				rpc("EnDeadge",$Enemies.get_child(i).id)
+			
 		
 		var v = Vector2(0,0)
 		var n = 0

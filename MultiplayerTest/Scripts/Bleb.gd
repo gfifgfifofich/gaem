@@ -28,11 +28,9 @@ func _physics_process(delta):
 		$ProgressBar.visible = true;
 			
 	# Add the gravity.
-	if(multiplayer.is_server()):
-		if(health <= 0):
+	if(!multiplayer.is_server()):
+		if(DeathT<=0):
 			die()
-	if(DeathT<=0):
-		die()
 	
 	var dist = 100000000
 	var v = Vector2()
