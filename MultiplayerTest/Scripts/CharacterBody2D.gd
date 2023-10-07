@@ -23,15 +23,11 @@ var altshoot = false;
 var deathTimer = 0.25
 
 
-var Derevo = preload("res://Scenes/derevo.tscn")
-var dagub = preload("res://Scenes/dagun.tscn")
-
-var Weapons = []
 var CurrentWeapons = [-1,-1]
 var yay = 0
 func addWeapon(wep):
-	if(wep >-1):
-		var wepi = Weapons[wep].instantiate()
+	if(wep >-1 && wep < Global.WeaponsArr.size()):
+		var wepi = Global.WeaponsArr[wep].instantiate()
 		wepi.scale *= Vector2(1.0,1.0)
 		wepi.WeaponID = wep
 		$Weapons.add_child(wepi)
@@ -58,8 +54,6 @@ func SetWeapons(weparr):
 	CurrentWeapons = weparr
 
 func _ready():
-	Weapons.append(Derevo);
-	Weapons.append(dagub);
 	SetWeapons([1,-1])
 	
 	pass
@@ -175,18 +169,14 @@ func _physics_process(delta):
 			#print ("not obamka")
 			rd +=1;
 		
-		get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
 	
 	if(multiplayer.is_server()):
 		if(!get_parent().created):
 			get_parent().createdPlayers.append(0)
 			get_parent().createdPlayerNames.append("host")
 			get_parent().created=true;
-		get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
-		
-		#if(id==0):
-		#	get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
-		
+	
+	get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
 	
 	$Label.text = Nick
 	

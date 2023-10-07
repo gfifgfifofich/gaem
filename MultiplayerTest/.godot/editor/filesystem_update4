@@ -8,3 +8,5 @@ res://Scenes/Bleb.tscn
 res://Scenes/player_interface.tscn
 res://Scripts/Global.gd
 res://Scripts/Node2D.gd
+res://Scripts/CharacterBody2D.gd
+res://Scripts/Bleb.gd
