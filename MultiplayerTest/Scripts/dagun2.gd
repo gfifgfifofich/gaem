@@ -20,7 +20,7 @@ func shoot():
 	var pi = partic.instantiate()
 	pi.global_position = $RayCast2D.get_collision_point()
 	pi.scale = Vector2(0.3,0.3)
-	get_parent().get_parent().get_parent().get_child(2).add_child(pi)
+	Global.ObjectsNode.add_child(pi)
 	pass
 
 func altshoot():
@@ -43,7 +43,7 @@ func _process(delta):
 			var pi = partic.instantiate()
 			pi.global_position = b.position
 			pi.scale = Vector2(0.3,0.3)
-			get_parent().get_parent().get_parent().get_child(2).add_child(pi)
+			Global.ObjectsNode.add_child(pi)
 			pass
 	
 	if rotation > deg_to_rad(0) && rotation < deg_to_rad(180):

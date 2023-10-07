@@ -12,3 +12,5 @@ res://Scripts/CharacterBody2D.gd
 res://Scripts/Bleb.gd
 res://Scenes/derevo.tscn
 res://Scripts/derevo.gd
+res://Scripts/dagun2.gd
+res://Scenes/dagun.tscn
