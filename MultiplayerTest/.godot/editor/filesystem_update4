@@ -16,3 +16,6 @@ res://Scripts/dagun2.gd
 res://Scenes/dagun.tscn
 res://Scripts/HealthBar.gd
 res://Scripts/player_interface.gd
+res://Particles/Test Particles.tscn
+res://Scripts/bullet.gd
+res://Scenes/bullet.tscn

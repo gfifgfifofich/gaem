@@ -5,7 +5,7 @@ var bullet = preload("res://Scenes/bullet.tscn")
 var mp = Vector2(0.0,0.0)
 var parentflip = false
 var cd = 1.0
-var WeaponID = -1
+var WeaponID = 0
 func shoot():
 	if(cd<=0):
 		cd = 0.25

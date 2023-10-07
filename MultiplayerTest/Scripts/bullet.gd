@@ -15,7 +15,7 @@ func _physics_process(delta):
 func dead():
 	var pi = partic.instantiate()
 	pi.position = position
-	pi.scale = Vector2(0.3,0.3)
+	pi.scale = Vector2(1.0,1.0)
 	get_parent().add_child(pi)
 	
 	
