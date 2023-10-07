@@ -35,6 +35,10 @@ offset_top = -62.0
 offset_right = 62.0
 offset_bottom = -8.0
 grow_vertical = 0
+color = Color(0.32549, 0.32549, 0.32549, 0.8)
+
+[node name="Pos" type="Node2D" parent="CanvasLayer/FirstArm"]
+position = Vector2(27, 47)
 
 [node name="SecondArm" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 2
@@ -45,3 +49,7 @@ offset_top = -62.0
 offset_right = 124.0
 offset_bottom = -8.0
 grow_vertical = 0
+color = Color(0.32549, 0.32549, 0.32549, 0.8)
+
+[node name="Pos" type="Node2D" parent="CanvasLayer/SecondArm"]
+position = Vector2(27, 47)

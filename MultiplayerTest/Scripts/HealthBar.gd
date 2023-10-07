@@ -11,3 +11,5 @@ func _process(delta):
 	for x in range (4,node2d.get_child_count()):
 			if node2d.get_child(x).id == 0:
 				value = node2d.get_child(x).health 
+				
+				

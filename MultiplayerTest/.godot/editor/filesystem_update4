@@ -1,9 +1,10 @@
 res://Scenes/MainMenu.tscn
 res://Sprites/TileMaps/node_2d.tres
 res://Sprites/TileMaps/node_2d no shadows.tres
-res://Scripts/Bleb.gd
 res://Scenes/block.tscn
 res://Scenes/character_body_2d.tscn
 res://Scenes/node_2d.tscn
 res://Scenes/Bleb.tscn
+res://Scenes/player_interface.tscn
+res://Scripts/Global.gd
 res://Scripts/Node2D.gd

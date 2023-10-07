@@ -41,6 +41,7 @@ environment = ExtResource("5_531lb")
 color = Color(0, 0, 0, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Objects"]
+visible = false
 scale = Vector2(92.675, 119.932)
 editor_only = true
 texture = ExtResource("7_0fa2o")

@@ -102,6 +102,8 @@ func _on_host_pressed():
 	pli.namename = "host"
 	add_child(pli);
 	
+	var uii = ui.instantiate()
+	add_child(uii)
 
 
 func _on_host_menu_open_pressed():
