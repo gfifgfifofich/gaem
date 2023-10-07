@@ -8,6 +8,7 @@ var WeaponsArr = []
 
 var Derevo = preload("res://Scenes/derevo.tscn")
 var dagun = preload("res://Scenes/dagun.tscn")
+var grenadeLauncher = preload("res://Scenes/grenade_canon.tscn")
 
 
 
@@ -16,6 +17,7 @@ var Player = false;
 func _ready():
 	WeaponsArr.append(Derevo)
 	WeaponsArr.append(dagun)
+	WeaponsArr.append(grenadeLauncher)
 	gvariableEboai = "G ready Eboai";
 	pass # Replace with function body.
 
