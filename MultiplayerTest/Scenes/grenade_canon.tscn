@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmv2kexbyub86"]
+
+[ext_resource type="Texture2D" uid="uid://dqu728dy0kfwl" path="res://Sprites/Guns/7.png" id="1_px3an"]
+[ext_resource type="Script" path="res://grenade_canon.gd" id="2_npnqk"]
+
+[node name="GrenadeCanon" type="Sprite2D"]
+texture_filter = 1
+rotation = -1.5708
+texture = ExtResource("1_px3an")
+script = ExtResource("2_npnqk")
+
+[node name="FirePoint" type="Node2D" parent="."]
+position = Vector2(14, 9.53674e-07)
