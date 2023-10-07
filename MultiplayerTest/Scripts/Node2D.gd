@@ -105,12 +105,11 @@ func UpdateHealth(id,hp):
 	pass
 @rpc("any_peer")
 func Deadge(id):
-	if(!multiplayer.is_server()):
-		for x in range (4,get_child_count()):
-			if get_child(x).id == id:
-				get_child(x).health = -10
-			elif(get_child(x).id == 0 and multiplayer.get_unique_id() == id):
-				get_child(x).health = -10
+	for x in range (4,get_child_count()):
+		if get_child(x).id == id:
+			get_child(x).health = -10
+		elif(get_child(x).id == 0 and multiplayer.get_unique_id() == id):
+			get_child(x).health = -10
 	pass
 
 @rpc("any_peer")
@@ -168,13 +167,10 @@ func _process(delta):
 			CreateEmeny(0,a,$Enemies.get_child_count())
 			rpc("CreateEmeny",0,a,$Enemies.get_child_count())
 		
-		print(multiplayer.get_peers())
 		var iiii = 4
 		while iiii < get_child_count():
-			print(get_child(iiii).id)
 			
 			if(get_child(iiii).id not in multiplayer.get_peers() and get_child(iiii).id != -1):
-				get_child(iiii).health = -10
 				Deadge(get_child(iiii).id)
 				rpc("Deadge",get_child(iiii).id)
 			iiii+=1;
@@ -183,7 +179,6 @@ func _process(delta):
 		for x in range (4,get_child_count()):
 			daids.append(get_child(x).id);
 			rpc("UpdateHealth",get_child(x).id, get_child(x).health)
-		print(daids)
 		rpc("UpdatePlayers",daids);
 		
 		
