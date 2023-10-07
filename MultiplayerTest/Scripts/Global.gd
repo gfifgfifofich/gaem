@@ -9,6 +9,9 @@ var WeaponsArr = []
 var Derevo = preload("res://Scenes/derevo.tscn")
 var dagun = preload("res://Scenes/dagun.tscn")
 
+
+
+var Player = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	WeaponsArr.append(Derevo)

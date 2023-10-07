@@ -32,7 +32,7 @@ func addWeapon(wep):
 		wepi.WeaponID = wep
 		$Weapons.add_child(wepi)
 	
-	
+
 func SetWeapons(weparr):
 	if($Weapons.get_child_count() ==2):
 		if($Weapons.get_child(0).WeaponID == weparr[0] && $Weapons.get_child(1).WeaponID == weparr[1]):
@@ -177,6 +177,8 @@ func _physics_process(delta):
 			get_parent().created=true;
 	
 	get_parent().rpc("pog",velocity, position,MousePos,shoot,altshoot,CurrentWeapons)
+	
+	Global.Player = self
 	
 	$Label.text = Nick
 	
