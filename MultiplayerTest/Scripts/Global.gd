@@ -3,6 +3,7 @@ extends  Node
 
 var gvariableEboai = "Eboai";
 var MainNode = null;
+var ObjectsNode = null;
 var WeaponsArr = []
 
 var Derevo = preload("res://Scenes/derevo.tscn")

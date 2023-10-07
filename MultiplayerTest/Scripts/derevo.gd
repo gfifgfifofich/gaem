@@ -12,7 +12,7 @@ func shoot():
 		var bli = bullet.instantiate()
 		bli.position = $end.global_position;
 		bli.velocity = ($end.global_position - global_position)*10.0
-		get_parent().get_parent().get_parent().get_child(2).add_child(bli)
+		Global.ObjectsNode.add_child(bli)
 	pass
 
 func altshoot():
@@ -21,15 +21,15 @@ func altshoot():
 		var bli = bullet.instantiate()
 		bli.position = $end.global_position;
 		bli.velocity = ($end.global_position - global_position)*5.0
-		get_parent().get_parent().get_parent().get_child(2).add_child(bli)
+		Global.ObjectsNode.add_child(bli)
 		bli = bullet.instantiate()
 		bli.position = $end.global_position;
 		bli.velocity = ($end.global_position - global_position)*9.0
-		get_parent().get_parent().get_parent().get_child(2).add_child(bli)
+		Global.ObjectsNode.add_child(bli)
 		bli = bullet.instantiate()
 		bli.position = $end.global_position;
 		bli.velocity = ($end.global_position - global_position)*1.0
-		get_parent().get_parent().get_parent().get_child(2).add_child(bli)
+		Global.ObjectsNode.add_child(bli)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -15,6 +15,7 @@ var namename = "stock"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.MainNode = self;
+	Global.ObjectsNode = $Objects;
 	enemyPreloads.append(en1)
 	
 	if(!multiplayer.is_server()):

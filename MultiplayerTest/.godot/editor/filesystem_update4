@@ -10,3 +10,5 @@ res://Scripts/Global.gd
 res://Scripts/Node2D.gd
 res://Scripts/CharacterBody2D.gd
 res://Scripts/Bleb.gd
+res://Scenes/derevo.tscn
+res://Scripts/derevo.gd
