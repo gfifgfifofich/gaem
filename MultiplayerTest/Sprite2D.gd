@@ -14,7 +14,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	
 	
 	velocity.y += gravity * delta
@@ -23,24 +23,23 @@ func _process(delta):
 	
 	$ProgressBar.value = (lifeTime/timeToExplode ) * 100
 	
-	move_and_slide()
 	
-	if(lifeTime < timeToExplode ):
-		return
+	if(lifeTime > timeToExplode ):
+		var explI = explosion.instantiate()
+		explI.global_position = position
+		Global.ObjectsNode.add_child(explI)
 		
-	var explI = explosion.instantiate()
-	explI.global_position = position
-	Global.ObjectsNode.add_child(explI)
+		for b in bodies:
+			if(!b.is_in_group("players")):
+				b.health -= damage
+				var pi = particle.instantiate()
+				pi.global_position = b.position
+				pi.scale = Vector2(0.3,0.3)
+				Global.ObjectsNode.add_child(pi)
+		
+		queue_free()
 	
-	for b in bodies:
-		if(!b.is_in_group("players")):
-			b.health -= damage
-			var pi = particle.instantiate()
-			pi.global_position = b.position
-			pi.scale = Vector2(0.3,0.3)
-			Global.ObjectsNode.add_child(pi)
-	
-	queue_free()
+	move_and_slide()
 	
 
 
