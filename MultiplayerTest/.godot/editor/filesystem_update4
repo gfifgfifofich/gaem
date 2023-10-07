@@ -1,21 +1,13 @@
 res://Scenes/MainMenu.tscn
 res://Sprites/TileMaps/node_2d.tres
 res://Sprites/TileMaps/node_2d no shadows.tres
+res://Scripts/CharacterBody2D.gd
 res://Scenes/block.tscn
 res://Scenes/character_body_2d.tscn
 res://Scenes/node_2d.tscn
 res://Scenes/Bleb.tscn
 res://Scenes/player_interface.tscn
-res://Scripts/Global.gd
-res://Scripts/Node2D.gd
-res://Scripts/CharacterBody2D.gd
-res://Scripts/Bleb.gd
 res://Scenes/derevo.tscn
-res://Scripts/derevo.gd
-res://Scripts/dagun2.gd
 res://Scenes/dagun.tscn
-res://Scripts/HealthBar.gd
-res://Scripts/player_interface.gd
 res://Particles/Test Particles.tscn
-res://Scripts/bullet.gd
 res://Scenes/bullet.tscn

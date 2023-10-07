@@ -124,7 +124,7 @@ func _physics_process(delta):
 	
 	if(Input.is_action_just_pressed("1")):
 		yay+=1;
-	if(yay >=3):
+	if(yay >=4):
 		yay =0
 	if yay ==0:
 		CurrentWeapons = [1,-1]
@@ -132,6 +132,8 @@ func _physics_process(delta):
 		CurrentWeapons = [1,0]
 	if yay ==2:
 		CurrentWeapons = [-1,-1]
+	if yay ==3:
+		CurrentWeapons = [2,-1]
 	
 	
 	if(Input.is_action_pressed("MainAttack")):
