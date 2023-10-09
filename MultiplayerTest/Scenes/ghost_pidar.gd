@@ -40,15 +40,15 @@ func Attack(atckID, timer):
 	if(atckID == 0):
 		
 		if(timer >= attackCooldown ):
-			#$FlareSound.play()
-			#var sus = projectile.instantiate();
-			#sus.position = $FirePoint.global_position
-			#sus.velocity = (trg - $FirePoint.global_position).normalized() * 300
-			#Global.ObjectsNode.add_child(sus);
-			#timeAfterAttack = 0.0
-			Shoot(0)
-			if(multiplayer.is_server()):
-				Global.MainNode.rpc("EnShoot",id,0,global_position,trg)
+			$FlareSound.play()
+			var sus = projectile.instantiate();
+			sus.position = $FirePoint.global_position
+			sus.velocity = (trg - $FirePoint.global_position).normalized() * 300
+			Global.ObjectsNode.add_child(sus);
+			timeAfterAttack = 0.0
+			#Shoot(0)
+			#if(multiplayer.is_server()):
+			#	Global.MainNode.rpc("EnShoot",id,0,global_position,trg)
 		elif(timer + 0.166666666*1 >=attackCooldown ):
 			$CharacterBody2D.play("Attack")
 		
@@ -107,8 +107,8 @@ func _physics_process(delta):
 	
 	
 	if(bodies.size() >0):
-		Attack(0,timeAfterAttack);
 		Global.MainNode.rpc("EnAttack",id,0,timeAfterAttack,global_position,trg);
+		Attack(0,timeAfterAttack);
 	
 
 
