@@ -44,7 +44,7 @@ func _process(delta):
 	if($Sprite2D.visible ==true):
 		for b in bodies:
 			if(!b.is_in_group("players")):
-				b.currentHealth -= delta * damage
+				b.health -= delta * damage
 			var pi = partic.instantiate()
 			pi.global_position = b.position
 			pi.scale = Vector2(0.3,0.3)

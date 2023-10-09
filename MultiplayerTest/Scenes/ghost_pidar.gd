@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const EnemyID = 2
-const cost = 10.0
+const Cost = 10.0
 
 var id = -1;
 const SPEED = 100.0
@@ -18,14 +18,18 @@ var timeAfterAttack =0.0;
 
 var VecAccum = Vector2(0,0)
 var jumpT = 1;
+var dying = false
 func _ready():
 	add_to_group("enemies")
 	
 func die():
+	if(!$CharacterBody2D.animation == "Death"):
+		$CharacterBody2D.play("Death")
+		dying = true
 	
-	get_parent().get_parent().CreatedEnemyIds.erase(id);
-	
-	queue_free()
+	elif(!$CharacterBody2D.is_playing()):
+		get_parent().get_parent().CreatedEnemyIds.erase(id);
+		queue_free()
 
 
 func Attack(atckID, timer):
@@ -46,9 +50,9 @@ func Attack(atckID, timer):
 
 
 func _physics_process(delta):
-	if health<=0:
-		$CharacterBody2D.play("Death")
-		
+	
+	if(dying):
+		return
 	if(multiplayer.is_server()):
 		if(bodies.size() >0):
 			timeAfterAttack += delta;
@@ -69,7 +73,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if(!multiplayer.is_server()):
 		if(DeathT<=0):
-			die()
+			queue_free()
 	
 	var dist = 100000000
 	var v = Vector2()

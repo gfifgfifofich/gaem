@@ -36,7 +36,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if(!multiplayer.is_server()):
 		if(DeathT<=0):
-			die()
+			queue_free();
 	
 	var dist = 100000000
 	var v = Vector2()
