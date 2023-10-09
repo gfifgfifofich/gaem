@@ -44,11 +44,11 @@ func Attack(atckID, timer):
 
 func _physics_process(delta):
 	
-	timeAfterAttack += delta;
 	if(multiplayer.is_server()):
 		if(bodies.size() >0):
-			Global.MainNode.rpc("EnAttack",id,0,timeAfterAttack,global_position,trg);
-			Attack(0,timeAfterAttack);
+			timeAfterAttack += delta;
+		Global.MainNode.rpc("EnAttack",id,0,timeAfterAttack,global_position,trg);
+		Attack(0,timeAfterAttack);
 	
 	if(!$CharacterBody2D.is_playing()):
 		$CharacterBody2D.play("default")
