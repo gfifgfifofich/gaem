@@ -36,7 +36,7 @@ func Attack(atckID, timer):
 			sus.velocity = (trg - $FirePoint.global_position).normalized() * 300
 			Global.ObjectsNode.add_child(sus);
 			timeAfterAttack = 0.0
-		elif(timer + 0.166666666*1 >=attackCooldown ):
+		elif(timer + 0.166666666*4 >=attackCooldown ):
 			$CharacterBody2D.play("Attack")
 		
 		
@@ -45,7 +45,10 @@ func Attack(atckID, timer):
 func _physics_process(delta):
 	
 	timeAfterAttack += delta;
-	
+	if(multiplayer.is_server()):
+		if(bodies.size() >0):
+			Global.MainNode.rpc("EnAttack",id,0,timeAfterAttack,global_position,trg);
+			Attack(0,timeAfterAttack);
 	
 	if(!$CharacterBody2D.is_playing()):
 		$CharacterBody2D.play("default")
@@ -89,13 +92,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
-	if(!multiplayer.is_server()):
-		return
 	
-	
-	if(bodies.size() >0):
-		Global.MainNode.rpc("EnAttack",id,0,timeAfterAttack,global_position,trg);
-		Attack(0,timeAfterAttack);
 	
 
 
