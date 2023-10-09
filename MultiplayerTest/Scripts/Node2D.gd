@@ -184,7 +184,7 @@ var wavePointGain = 30.0
 
 var wavePoints =130.0
 
-var wavevariation = [0,1,2,3]
+var wavevariation = [3]
 
 
 func s_spawnEEEEE(type,pos):
