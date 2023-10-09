@@ -5,7 +5,4 @@ res://Scenes/dagun.tscn
 res://Scenes/character_body_2d.tscn
 res://Scenes/grenade.tscn
 res://Scenes/demon.tscn
-res://Scenes/node_2d.tscn
-res://Scenes/ghost_pidar.tscn
-res://Scenes/ghost_pidar.gd
-res://Scripts/Node2D.gd
+res://Scenes/Enemies/enemy_template.tscn
