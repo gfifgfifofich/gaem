@@ -20,8 +20,11 @@ var VecAccum = Vector2(0,0)
 var jumpT = 1;
 func _ready():
 	add_to_group("enemies")
+	
 func die():
+	
 	get_parent().get_parent().CreatedEnemyIds.erase(id);
+	
 	queue_free()
 
 
@@ -43,7 +46,9 @@ func Attack(atckID, timer):
 
 
 func _physics_process(delta):
-	
+	if health<=0:
+		$CharacterBody2D.play("Death")
+		
 	if(multiplayer.is_server()):
 		if(bodies.size() >0):
 			timeAfterAttack += delta;

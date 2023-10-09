@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/player_interface.gd" id="1_r8yc1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7np3"]
-bg_color = Color(0.843137, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqtr"]
+bg_color = Color(1, 0.188235, 0, 1)
 
 [node name="PlayerInterface" type="Control"]
 z_index = 1024
@@ -18,11 +18,18 @@ script = ExtResource("1_r8yc1")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 854.0
-offset_top = 7.0
-offset_right = 1144.0
-offset_bottom = 34.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_x7np3")
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -308.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 18.0
+grow_horizontal = 0
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_bqqtr")
+exp_edit = true
 fill_mode = 1
 show_percentage = false
 

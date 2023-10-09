@@ -6,3 +6,12 @@ res://Scenes/character_body_2d.tscn
 res://Scenes/grenade.tscn
 res://Scenes/demon.tscn
 res://Scenes/Enemies/enemy_template.tscn
+res://Scenes/player_interface.tscn
+res://EnemyTemplate.gd
+res://Scripts/Global.gd
+res://Scenes/Enemies/MrSkelebones.tscn
+res://Scenes/ghost_pidar.tscn
+res://Scenes/ghost_pidar.gd
+res://Scripts/Node2D.gd
+res://Scripts/dagun2.gd
+res://Scenes/Test/Enemies/MrSkelebones.tscn

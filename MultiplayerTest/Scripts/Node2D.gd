@@ -10,7 +10,8 @@ var en3 = preload("res://Scenes/ghost_pidar.tscn");
 var enemyPreloads =[preload("res://Scenes/Bleb.tscn"),
 					preload("res://Scenes/BlebSus.tscn"),
 					preload("res://Scenes/ghost_pidar.tscn"),
-					preload("res://Scenes/demon.tscn")]
+					preload("res://Scenes/demon.tscn"),
+					preload("res://Scenes/Enemies/MrSkelebones.tscn")]
 					
 var enemyInstances =[]
 var enemiesIDs =[]
@@ -144,7 +145,6 @@ func CreateEmeny(enID,posiion,id):
 	if(id not in CreatedEnemyIds):
 		var inst = enemyPreloads[enID].instantiate();
 		inst.position= posiion;
-		inst.trg= posiion;
 		inst.id = id;
 		CreatedEnemyIds.append(id)
 		$Enemies.add_child(inst);
@@ -172,7 +172,7 @@ func EnDeadge(id):
 	for i in range(0,$Enemies.get_child_count()):
 		if($Enemies.get_child(i).id == id):
 			CreatedEnemyIds.erase(id);
-			$Enemies.get_child(i).die()
+			$Enemies.get_child(i)._die()
 	pass
 
 @rpc("any_peer")
@@ -194,7 +194,7 @@ var wavePointGain = 3.0
 
 var wavePoints =30.0
 
-var wavevariation = [2]
+var wavevariation = [4]
 
 
 func s_spawnEEEEE(type,pos):
@@ -215,9 +215,9 @@ func s_SpawnEnemy():
 		var tryes = 1;
 		for x in range(0, tryes):
 			i = randi_range(0,wavevariation.size()-1)
-			if(enemyInstances[wavevariation[i]].cost <=wavePoints && enemyInstances[wavevariation[i]].cost>=lcst):
-				type = i;
-				lcst = enemyInstances[wavevariation[i]].cost;
+			if(enemyInstances[wavevariation[i]].spawningCost <=wavePoints && enemyInstances[wavevariation[i]].spawningCost>=lcst):
+				type = i
+				lcst = enemyInstances[wavevariation[i]].spawningCost;
 		
 		if(lcst>=0):
 			var cnt = floor(wavePoints/lcst)
@@ -267,13 +267,7 @@ func _process(delta):
 		
 		
 		var iii = 0
-		while iii < $Enemies.get_child_count():
-			if($Enemies.get_child(iii).health<=0):
-				EnDeadge($Enemies.get_child(iii).id)
-				rpc("EnDeadge",$Enemies.get_child(iii).id)
-				iii+=1;
-			else:
-				iii+=1;
+		
 		
 		enemiesIDs.resize($Enemies.get_child_count())
 		enemiesTypes.resize($Enemies.get_child_count())
@@ -283,12 +277,12 @@ func _process(delta):
 		CreatedEnemyIds.resize($Enemies.get_child_count())
 		for i in range(0,$Enemies.get_child_count()):
 			enemiesIDs[i]=$Enemies.get_child(i).id
-			enemiesTypes[i]=$Enemies.get_child(i).EnemyID
-			enemyHealths[i]=$Enemies.get_child(i).health
+			enemiesTypes[i]=$Enemies.get_child(i).enemyID
+			enemyHealths[i]=$Enemies.get_child(i).currentHealth
 			enemyPositions[i]=$Enemies.get_child(i).position
-			enemyTrgs[i]=$Enemies.get_child(i).trg
+			enemyTrgs[i]=$Enemies.get_child(i).targetPosition
 			CreatedEnemyIds[i] = $Enemies.get_child(i).id
-			rpc("UpdateEmenies",$Enemies.get_child(i).id,$Enemies.get_child(i).position,$Enemies.get_child(i).velocity,$Enemies.get_child(i).health,$Enemies.get_child(i).trg,$Enemies.get_child(i).EnemyID)
+			rpc("UpdateEmenies",$Enemies.get_child(i).id,$Enemies.get_child(i).position,$Enemies.get_child(i).velocity,$Enemies.get_child(i).currentHealth,$Enemies.get_child(i).targetPosition,$Enemies.get_child(i).enemyID)
 			
 		
 		var v = Vector2(0,0)

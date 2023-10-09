@@ -1,0 +1,261 @@
+[gd_scene load_steps=25 format=3 uid="uid://cf1n1dw3sj1dc"]
+
+[ext_resource type="Texture2D" uid="uid://cckciwo00idjn" path="res://Sprites/Attack.png" id="1_e133v"]
+[ext_resource type="Texture2D" uid="uid://bjc3xnqo1vd01" path="res://Sprites/Idle.png" id="2_mwj64"]
+[ext_resource type="Texture2D" uid="uid://b03p37jm36pms" path="res://Sprites/Walk.png" id="3_xot1k"]
+
+[sub_resource type="GDScript" id="GDScript_2duhq"]
+script/source = "extends CharacterBody2D
+
+var enemyID : int = 4
+var id : int = -1
+var spawningCost : float = 5.0
+
+var maxHealth : float = 500
+var currentHealth : float
+var bounty : int = 200
+
+var targetPosition : Vector2
+var distanceToTarget : float
+var isTargetingCrystal : bool
+
+var visiblePlayerBodies : Array
+
+func _basicEnemyProcess():
+	_updateHealthBar()
+	_findTarget()
+	_flipSprite()
+	
+func GetDamage(value : float):
+	maxHealth -= value
+	if maxHealth <= 0:
+		if multiplayer.is_server():
+			Global.MainNode.EnDeadge(id)
+			Global.MainNode.rpc(\"EnDeadge\",id)
+
+func Attack(atckID, timer):
+	pass
+	
+func _die():
+	Global.MainNode.CreatedEnemyIds.erase(id)
+	queue_free()
+	
+func _updateHealthBar():
+	$HealthBar.value = (currentHealth / maxHealth) * 100
+	
+func _flipSprite():
+	if((targetPosition - global_position).x > 0.0):
+		$Sprite.flip_h = true
+	else:
+		$Sprite.flip_h = false
+	
+func _findTarget():
+	if(visiblePlayerBodies.size() <= 0 or isTargetingCrystal):
+		targetPosition = Global.CrystallPosition
+		distanceToTarget = (Global.CrystallPosition - global_position).length_squared()
+	else:
+		for body in visiblePlayerBodies:
+			if (body.global_position - global_position).length_squared() < distanceToTarget:
+				targetPosition = body.global_position
+				distanceToTarget = (body.global_position - global_position).length_squared()
+	
+func _ready():
+	currentHealth = maxHealth
+	
+	add_to_group(\"enemies\")
+	_findTarget()
+	
+func _physics_process(delta):
+	
+	_basicEnemyProcess();
+	
+	#Code
+
+func _on_vision_area_body_entered(body):
+	if body.is_in_group(\"players\"):
+		visiblePlayerBodies.append(body)
+
+func _on_vision_area_body_exited(body):
+	if body.is_in_group(\"players\"):
+		visiblePlayerBodies.erase(body)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkmo5"]
+atlas = ExtResource("1_e133v")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siwcy"]
+atlas = ExtResource("1_e133v")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc6mh"]
+atlas = ExtResource("1_e133v")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egkhr"]
+atlas = ExtResource("1_e133v")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvcrg"]
+atlas = ExtResource("1_e133v")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn7c6"]
+atlas = ExtResource("1_e133v")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx780"]
+atlas = ExtResource("1_e133v")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tadde"]
+atlas = ExtResource("1_e133v")
+region = Rect2(1050, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o67v2"]
+atlas = ExtResource("2_mwj64")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx5c2"]
+atlas = ExtResource("2_mwj64")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbskl"]
+atlas = ExtResource("2_mwj64")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uylc6"]
+atlas = ExtResource("2_mwj64")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxcb2"]
+atlas = ExtResource("3_xot1k")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow22w"]
+atlas = ExtResource("3_xot1k")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x11ls"]
+atlas = ExtResource("3_xot1k")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jghd8"]
+atlas = ExtResource("3_xot1k")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8m1pf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkmo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_siwcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc6mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egkhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvcrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn7c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx780")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tadde")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o67v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx5c2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbskl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uylc6")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxcb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow22w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x11ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jghd8")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5sxyh"]
+radius = 16.0
+height = 56.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7glew"]
+size = Vector2(1619, 56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj5pl"]
+bg_color = Color(0.72549, 0, 0.129412, 1)
+
+[node name="EnemyTemplate" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 16
+script = SubResource("GDScript_2duhq")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_8m1pf")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.551306
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("CapsuleShape2D_5sxyh")
+
+[node name="VisionArea" type="Area2D" parent="."]
+
+[node name="VisionAreaShape" type="CollisionShape2D" parent="VisionArea"]
+shape = SubResource("RectangleShape2D_7glew")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -32.0
+offset_right = 18.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_vj5pl")
+fill_mode = 1
+show_percentage = false
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]

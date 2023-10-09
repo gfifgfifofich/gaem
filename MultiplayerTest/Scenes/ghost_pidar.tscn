@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://bw4s5pxbjooa"]
+[gd_scene load_steps=37 format=3 uid="uid://bw4s5pxbjooa"]
 
 [ext_resource type="Script" path="res://Scenes/ghost_pidar.gd" id="1_bwnmp"]
 [ext_resource type="Texture2D" uid="uid://bqyg7cdvw7e5x" path="res://Sprites/ghost-idle.png" id="1_j4n3v"]
 [ext_resource type="Texture2D" uid="uid://b71ke4pd6svfo" path="res://Sprites/ghost-appears.png" id="2_b1gvh"]
+[ext_resource type="Texture2D" uid="uid://bsvvi3c7ili87" path="res://Sprites/ghost-vanish.png" id="3_jo14h"]
 [ext_resource type="Texture2D" uid="uid://djkh22w62vdqa" path="res://Sprites/ghost-shriek.png" id="4_wfys1"]
 [ext_resource type="AudioStream" uid="uid://ch6cxmt1naiou" path="res://Sounds/39138648_fire-torch-whoosh-movement-03.wav" id="5_hrpph"]
 
@@ -29,6 +30,34 @@ region = Rect2(128, 0, 64, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmry8"]
 atlas = ExtResource("4_wfys1")
 region = Rect2(64, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0l2l"]
+atlas = ExtResource("3_jo14h")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ixp7"]
+atlas = ExtResource("3_jo14h")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70u4v"]
+atlas = ExtResource("3_jo14h")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta570"]
+atlas = ExtResource("3_jo14h")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00jkg"]
+atlas = ExtResource("3_jo14h")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w2vi"]
+atlas = ExtResource("3_jo14h")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyyfe"]
+atlas = ExtResource("3_jo14h")
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur8hw"]
 atlas = ExtResource("2_b1gvh")
@@ -109,6 +138,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_x0l2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ixp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70u4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta570")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00jkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w2vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyyfe")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ur8hw")
 }, {
 "duration": 1.0,
@@ -174,8 +229,10 @@ script = ExtResource("1_bwnmp")
 
 [node name="CharacterBody2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3r4p0")
-animation = &"Attack"
+animation = &"Death"
 autoplay = "Spawn"
+frame = 3
+frame_progress = 0.444359
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
