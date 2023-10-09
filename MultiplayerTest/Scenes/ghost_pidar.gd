@@ -19,8 +19,6 @@ var timeAfterAttack =0.0;
 var VecAccum = Vector2(0,0)
 var jumpT = 1;
 func _ready():
-	
-	
 	add_to_group("enemies")
 func die():
 	get_parent().get_parent().CreatedEnemyIds.erase(id);
@@ -34,22 +32,24 @@ func Shoot(atckID):
 		sus.position = $FirePoint.global_position
 		sus.velocity = (trg - $FirePoint.global_position).normalized() * 300
 		Global.ObjectsNode.add_child(sus);
+		timeAfterAttack = 0.0
 
 
 func Attack(atckID, timer):
 	
 	if(atckID == 0):
+		
 		if(timer >= attackCooldown ):
-			$FlareSound.play()
-			var sus = projectile.instantiate();
-			sus.position = $FirePoint.global_position
-			sus.velocity = (trg - $FirePoint.global_position).normalized() * 300
-			Global.ObjectsNode.add_child(sus);
-			timeAfterAttack = 0.0
-			#Shoot(0)
-			#if(multiplayer.is_server()):
-			#	Global.MainNode.rpc("EnShoot",id,0,global_position,trg)
-		elif(timer + 0.166666666*3 >=attackCooldown ):
+			#$FlareSound.play()
+			#var sus = projectile.instantiate();
+			#sus.position = $FirePoint.global_position
+			#sus.velocity = (trg - $FirePoint.global_position).normalized() * 300
+			#Global.ObjectsNode.add_child(sus);
+			#timeAfterAttack = 0.0
+			Shoot(0)
+			if(multiplayer.is_server()):
+				Global.MainNode.rpc("EnShoot",id,0,global_position,trg)
+		elif(timer + 0.166666666*1 >=attackCooldown ):
 			$CharacterBody2D.play("Attack")
 		
 		
