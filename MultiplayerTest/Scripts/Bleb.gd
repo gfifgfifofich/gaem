@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 const EnemyID = 0
+const cost = 1.0
+
 var id = -1;
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
@@ -43,6 +45,7 @@ func _physics_process(delta):
 			trg = x.global_position
 			dist = (x.global_position-global_position).length_squared() 
 		pass
+	
 	if(!multiplayer.is_server()):
 		DeathT-=delta
 	if(global_position.x<trg.x):

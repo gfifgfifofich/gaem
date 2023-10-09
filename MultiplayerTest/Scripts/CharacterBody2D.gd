@@ -58,6 +58,15 @@ func _ready():
 	
 	pass
 
+
+var invincibilityTime = 0.2
+var timeAfterDamage = 0.0
+
+func GetDamage(amount):
+	if(timeAfterDamage >= invincibilityTime):
+		health -= amount;
+		timeAfterDamage = 0.0;
+	
 func _die(delta):
 	if(!multiplayer.is_server()):
 		queue_free()
@@ -72,7 +81,12 @@ func _die(delta):
 			queue_free()
 
 
+
+
 func _physics_process(delta):
+	
+	timeAfterDamage += delta
+	
 	if health <= 0:
 		_die(delta);
 	if(abs(velocity.x)>1):

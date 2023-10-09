@@ -11,6 +11,8 @@ var shot = false;
 var damage = 250;
 func shoot():
 	shot = true
+	if(! $LaserHalo.playing):
+		$LaserHalo.play()
 	damage = 250
 	$Sprite2D/PointLight2D.color = Color.LIGHT_SKY_BLUE
 	$Sprite2D.scale.x = 0.025
@@ -25,6 +27,9 @@ func shoot():
 
 func altshoot():
 	shot = true
+	if(! $LaserHalo.playing):
+		$LaserHalo.play()
+	
 	damage = 100
 	$Sprite2D/PointLight2D.color = Color.DARK_RED
 	$Sprite2D.scale.x = 0.1
@@ -53,6 +58,7 @@ func _process(delta):
 	
 	if(!shot):
 		$Sprite2D.visible =false
+		$LaserHalo.stop()
 	else:
 		shot = false
 	cd -=delta

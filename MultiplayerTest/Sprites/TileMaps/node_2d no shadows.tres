@@ -209,8 +209,8 @@ texture = ExtResource("4_fqpb5")
 2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(1, 8, -8, 8, -8, -8, 8, -8, 8, 1, 1, 1)
 
 [resource]
-physics_layer_0/collision_layer = 17
-physics_layer_0/collision_mask = 17
+physics_layer_0/collision_layer = 145
+physics_layer_0/collision_mask = 145
 sources/1 = SubResource("TileSetAtlasSource_sclhm")
 sources/0 = SubResource("TileSetAtlasSource_7n8kf")
 sources/2 = SubResource("TileSetAtlasSource_kg0wo")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://2uvyrinrx473"]
+[gd_scene load_steps=10 format=3 uid="uid://2uvyrinrx473"]
 
 [ext_resource type="Texture2D" uid="uid://b8xb1wko766uj" path="res://Sprites/icon.svg" id="1_0eqsc"]
 [ext_resource type="Texture2D" uid="uid://2bvvl0q80aue" path="res://Sprites/LaserPencil.png" id="1_ldftt"]
 [ext_resource type="Script" path="res://Scripts/dagun2.gd" id="2_5ceb0"]
 [ext_resource type="Shader" path="res://Scenes/dagun.gdshader" id="4_mi1nr"]
 [ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="5_q1rwh"]
+[ext_resource type="AudioStream" uid="uid://degb7espl3a0o" path="res://Sounds/39725734_outer-space-laser-noise-03.wav" id="6_uj1o6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chdtc"]
 size = Vector2(120, 115.385)
@@ -53,6 +54,8 @@ scale = Vector2(0.025, 0.039)
 offset = Vector2(0, -64)
 
 [node name="Area2D" type="Area2D" parent="Sprite2D" groups=["players"]]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
 position = Vector2(0, -64)
@@ -83,6 +86,10 @@ collision_mask = 16384
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_cbpb6")
+
+[node name="LaserHalo" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -13)
+stream = ExtResource("6_uj1o6")
 
 [connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://6wuslfy1gfje"]
+[gd_scene load_steps=9 format=3 uid="uid://6wuslfy1gfje"]
 
 [ext_resource type="Script" path="res://Scripts/Node2D.gd" id="1_tpsvb"]
 [ext_resource type="TileSet" uid="uid://dbjli8e8vwedl" path="res://Sprites/TileMaps/node_2d.tres" id="2_2xt1w"]
@@ -7,6 +7,7 @@
 [ext_resource type="Environment" uid="uid://bdnc0fed2mei1" path="res://Sprites/TileMaps/new_environment.tres" id="5_531lb"]
 [ext_resource type="PackedScene" uid="uid://45vq2olifcx4" path="res://Scenes/portal.tscn" id="6_o12yd"]
 [ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="7_0fa2o"]
+[ext_resource type="PackedScene" uid="uid://xjcavhetp4sn" path="res://Scenes/spawner.tscn" id="8_v2pwu"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_tpsvb")
@@ -41,7 +42,6 @@ environment = ExtResource("5_531lb")
 color = Color(0, 0, 0, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Objects"]
-visible = false
 scale = Vector2(92.675, 119.932)
 editor_only = true
 texture = ExtResource("7_0fa2o")
@@ -81,6 +81,26 @@ position = Vector2(-1665, 530)
 
 [node name="65661" parent="Objects" instance=ExtResource("5_37ga8")]
 position = Vector2(-1382, 530)
+
+[node name="Spawners" type="Node2D" parent="Objects"]
+
+[node name="Spawner" parent="Objects/Spawners" instance=ExtResource("8_v2pwu")]
+position = Vector2(-271, 289)
+
+[node name="Spawner2" parent="Objects/Spawners" instance=ExtResource("8_v2pwu")]
+position = Vector2(-167, 219)
+
+[node name="Spawner3" parent="Objects/Spawners" instance=ExtResource("8_v2pwu")]
+position = Vector2(-441, 227)
+
+[node name="Spawner4" parent="Objects/Spawners" instance=ExtResource("8_v2pwu")]
+position = Vector2(-351, 219)
+
+[node name="Spawner5" parent="Objects/Spawners" instance=ExtResource("8_v2pwu")]
+position = Vector2(-414, 293)
+
+[node name="Spawner6" parent="Objects/Spawners" instance=ExtResource("8_v2pwu")]
+position = Vector2(-192, 297)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false

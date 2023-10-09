@@ -1,34 +1,59 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1h41wtwnlu0d"]
+[gd_scene load_steps=10 format=3 uid="uid://b1h41wtwnlu0d"]
 
 [ext_resource type="Texture2D" uid="uid://iqw7gtf4awjv" path="res://Sprites/65654.png" id="1_4f2er"]
 [ext_resource type="Script" path="res://Sprite2D.gd" id="2_2jvpn"]
+[ext_resource type="AudioStream" uid="uid://rw34vv0yfxr2" path="res://Sounds/39571925_bomb-fuse-burning-02.wav" id="3_ecpiw"]
+[ext_resource type="AudioStream" uid="uid://cbm7n8y1efmbu" path="res://Sounds/39572009_explosion-01.wav" id="4_0xfc1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e1ur0"]
+friction = 0.76
+bounce = 0.54
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8r6t"]
 radius = 74.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3auf5"]
-radius = 9.05539
+[sub_resource type="CircleShape2D" id="CircleShape2D_qupe2"]
+radius = 9.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npnpq"]
+radius = 3.0
+height = 14.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mmpu"]
 bg_color = Color(0.639216, 0, 0, 1)
 
-[node name="Grenade" type="CharacterBody2D"]
+[node name="Grenade" type="RigidBody2D"]
+modulate = Color(18.94, 18.93, 8.87, 1)
 texture_filter = 1
-slide_on_ceiling = false
+collision_layer = 0
+collision_mask = 128
+physics_material_override = SubResource("PhysicsMaterial_e1ur0")
 script = ExtResource("2_2jvpn")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_m8r6t")
 
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_qupe2")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3auf5")
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_npnpq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4f2er")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -28.0
 offset_top = -12.0
 offset_right = 28.0
@@ -37,5 +62,14 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0mmpu")
 fill_mode = 1
 show_percentage = false
 
+[node name="Fuse" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ecpiw")
+attenuation = 6.72717
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0xfc1")
+attenuation = 2.37841
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

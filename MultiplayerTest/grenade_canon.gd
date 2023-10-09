@@ -12,7 +12,7 @@ func shoot():
 		cd = 2
 		var bli = bullet.instantiate()
 		bli.position = $FirePoint.global_position;
-		bli.velocity = ($FirePoint.global_position - global_position)*20.0
+		bli.linear_velocity = ($FirePoint.global_position - global_position)*20.0
 		Global.ObjectsNode.add_child(bli)
 	pass
 

@@ -17,6 +17,8 @@ default_font_size = 500
 polygon = PackedVector2Array(-12, -8, 12, -8, 12, -4, 20, -4, 20, 0, 24, 0, 24, 4, 28, 4, 28, 8, 32, 12, 28, 68, -28, 68, -28, 4)
 
 [node name="Player" type="CharacterBody2D" groups=["players"]]
+collision_layer = 1025
+collision_mask = 1040
 script = ExtResource("1_fs7tg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["players"]]
@@ -58,3 +60,5 @@ texture = ExtResource("5_xbnen")
 
 [node name="Weapons" type="Node2D" parent="." groups=["players"]]
 position = Vector2(0, 9.315)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]

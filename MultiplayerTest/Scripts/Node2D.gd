@@ -1,22 +1,41 @@
 extends Node2D
 
 var pl = preload("res://Scenes/character_body_2d.tscn");
-
+var namename = "stock"
 var en1 = preload("res://Scenes/Bleb.tscn");
+var en2 = preload("res://Scenes/BlebSus.tscn");
+var en3 = preload("res://Scenes/ghost_pidar.tscn");
 
-var enemyPreloads =[]
+
+var enemyPreloads =[preload("res://Scenes/Bleb.tscn"),
+					preload("res://Scenes/BlebSus.tscn"),
+					preload("res://Scenes/ghost_pidar.tscn"),
+					preload("res://Scenes/demon.tscn")]
+					
+var enemyInstances =[]
 var enemiesIDs =[]
 var enemiesTypes =[]
 var enemyHealths =[]
 var enemyPositions =[]
 var enemyTrgs =[]
 var CreatedEnemyIds =[]
-var namename = "stock"
+
+
+var SpawnPositions = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.MainNode = self;
 	Global.ObjectsNode = $Objects;
-	enemyPreloads.append(en1)
+	
+	for enemy in enemyPreloads:
+		enemyInstances.append(enemy.instantiate())
+	
+	
+	
+	for i in $Objects/Spawners.get_children():
+		SpawnPositions.append(i.position)
+	
+	
 	
 	if(!multiplayer.is_server()):
 		addPlayer(1,namename);
@@ -157,12 +176,67 @@ func EnDeadge(id):
 	pass
 
 
+var SpawnTime =3.0
+var WaveTimeLeft =0.0;
+
+var waveDuration = 30.0
+var wavePointGain = 30.0
+
+var wavePoints =130.0
+
+var wavevariation = [0,1,2,3]
+
+
+func s_spawnEEEEE(type,pos):
+	var a = Vector2(randf_range(-25,25),randf_range(-25,25))
+	
+	CreateEmeny(type,pos +a,$Enemies.get_child_count())
+	
+	rpc("CreateEmeny",type,pos+a,$Enemies.get_child_count())
+
+func s_SpawnEnemy():
+	
+	var tryes2 = 3;
+	for y in range(0, tryes2):
+		var type = -1
+		var lcst = -1;
+		var i = 0 
+		
+		var tryes = 1;
+		for x in range(0, tryes):
+			i = randi_range(0,wavevariation.size()-1)
+			if(enemyInstances[wavevariation[i]].cost <=wavePoints && enemyInstances[wavevariation[i]].cost>=lcst):
+				type = i;
+				lcst = enemyInstances[wavevariation[i]].cost;
+		
+		if(lcst>=0):
+			var cnt = floor(wavePoints/lcst)
+			for pohyi in range(1,cnt):
+				s_spawnEEEEE(wavevariation[type], SpawnPositions[randi_range(0,SpawnPositions.size()-1)])
+				wavePoints -= lcst;
+	
+	
+	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
 	if(multiplayer.is_server()):
+		
+		SpawnTime -= delta;
+		wavePoints += wavePointGain*delta
+		WaveTimeLeft-=delta
+		
+		if(WaveTimeLeft<=0.0):
+			if($Enemies.get_child_count()<=0):
+				WaveTimeLeft=waveDuration
+		else:
+			if(SpawnTime<=0):
+				SpawnTime = 3.0
+				s_SpawnEnemy()
+		
+		
 		if(Input.is_action_just_pressed("1")):
-			
 			var a=Vector2(randf_range(-500,200),randf_range(-100,200))
 			CreateEmeny(0,a,$Enemies.get_child_count())
 			rpc("CreateEmeny",0,a,$Enemies.get_child_count())

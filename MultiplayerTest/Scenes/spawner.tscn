@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://xjcavhetp4sn"]
+
+[ext_resource type="Texture2D" uid="uid://wm3i6sj2vbfw" path="res://Particles/bleb.png" id="1_mvv88"]
+
+[node name="Spawner" type="Node2D"]
+
+[node name="Bleb" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.219608, 0, 1)
+texture_filter = 1
+texture = ExtResource("1_mvv88")

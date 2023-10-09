@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1y02e8kev364"]
+
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="2_oews2"]
+[ext_resource type="AudioStream" uid="uid://b8lyi7ef8i40r" path="res://Sounds/39725705_light-beam-hit-03.wav" id="3_rso1d"]
+
+[sub_resource type="GDScript" id="GDScript_0fimx"]
+script/source = "extends CharacterBody2D
+
+var isDead = false;
+
+var partic = preload(\"res://Particles/Test Particles3.tscn\")
+
+var t = 4.0
+
+func _physics_process(delta):
+	t-=delta
+	if(t<=0.0):
+		dead()
+		
+	if(isDead && $ImpactSound.playing == false):
+		queue_free()
+	move_and_slide()
+
+func dead():
+	var pi = partic.instantiate()
+	pi.position = position
+	pi.scale = Vector2(1.0,1.0)
+	get_parent().add_child(pi)
+	
+	
+
+func _on_area_2d_body_entered(body):
+	if isDead:
+		return
+	dead()
+	if(multiplayer.is_server()):
+		if(body.is_in_group(\"players\")):
+			body.GetDamage(10);
+	visible = false
+	$ImpactSound.play()
+	isDead = true
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6of5q"]
+radius = 7.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_mask = 0
+script = SubResource("GDScript_0fimx")
+
+[node name="Sadsad" type="Sprite2D" parent="."]
+modulate = Color(0, 0.713726, 0.886275, 1)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_oews2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6of5q")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.25, 0.25)
+color = Color(0.878431, 0.952941, 1, 1)
+shadow_enabled = true
+shadow_filter_smooth = 7.5
+texture = ExtResource("2_oews2")
+
+[node name="ImpactSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rso1d")
+attenuation = 2.46229
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

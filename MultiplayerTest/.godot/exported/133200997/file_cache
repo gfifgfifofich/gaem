@@ -1,18 +1,26 @@
-res://Particles/Test Particles.tscn::a4985517ace0b4c7454c029a512e6f1f::1696510670::res://.godot/exported/133200997/export-506477ff90840b28eee8b33045a42a1f-Test Particles.scn
-res://Particles/Test Particles2.tscn::a01085f8245a698b8b93b59139dceec3::1696510670::res://.godot/exported/133200997/export-5012f1391e7823636b5f1f1cb140b16d-Test Particles2.scn
-res://Scenes/Bleb.tscn::e4d8ac8b5ce0f118ee6152472b101d83::1696665194::res://.godot/exported/133200997/export-11002136624ecb9536a85fd65ec3a7db-Bleb.scn
-res://Scenes/block.tscn::10494d5873226e5bbac6d95b40113de5::1696665194::res://.godot/exported/133200997/export-ac8c57d18a04cc52bbc61f46de273caf-block.scn
-res://Scenes/bullet.tscn::9efdeabafbb56c61b7c0b492ca50b348::1696510670::res://.godot/exported/133200997/export-ebb3521b4f0ab2fc80eef1183e18e924-bullet.scn
-res://Scenes/character_body_2d.tscn::06f8751d931c41494d5cc7c985437da6::1696665194::res://.godot/exported/133200997/export-dda0f8d895ddef9d71234958a64c897e-character_body_2d.scn
-res://Scenes/dagun.tscn::e038672b8e7161aa9395e763375a4327::1696613784::res://.godot/exported/133200997/export-3b9230b4c7c4a5845d4768848dbf094b-dagun.scn
-res://Scenes/derevo.tscn::2405c629d994a3b5f19c6a44bf3d755a::1696510670::res://.godot/exported/133200997/export-c74a2b16f2aa827249a7bbb0ed832af9-derevo.scn
-res://Scenes/dethcube.tscn::b3f42cb2bf86a15e84bb34ef83506ee4::1696510670::res://.godot/exported/133200997/export-c5e9af30e586d81aa31019fac3fd69b3-dethcube.scn
-res://Scenes/Main.tscn::bd7a86bcfda09b50e2f2dd6311b50537::1696510670::res://.godot/exported/133200997/export-a8e1520d83f25710dd4e3da8c6f32601-Main.scn
-res://Scenes/MainMenu.tscn::95acaa5d96e6af3bda92932b256c9708::1696665194::res://.godot/exported/133200997/export-5d46f2c25b5b7595677274e5845c73b8-MainMenu.scn
-res://Scenes/node_2d.tscn::f7eb47aaa318780de7e5c7dcfc3d4ee0::1696665194::res://.godot/exported/133200997/export-56b62997d4fc30d58bc9b160fa0e9b0c-node_2d.scn
-res://Scenes/player_interface.tscn::ef6a9daf12dfd541740dcdd110bb2186::1696665194::res://.godot/exported/133200997/export-88dbaf4aa22403ab6d30f78d6843fc3a-player_interface.scn
-res://Scenes/portal.tscn::6b0a33f088245c9599f619ec28147467::1696510670::res://.godot/exported/133200997/export-e6aa7fcb2e43d6395eac3a8bf41ce62d-portal.scn
-res://Scenes/Tortch.tscn::daabd927cb9e2c673e6dd39cbf2b471c::1696510670::res://.godot/exported/133200997/export-ecfd56e7ce8b972c5687c5d4dc6981f8-Tortch.scn
-res://Sprites/TileMaps/new_environment.tres::e8de97117fc3c1374e1dc84998c164a6::1696510671::res://.godot/exported/133200997/export-2c77e59bf8c334590b2240bc177a4b28-new_environment.res
-res://Sprites/TileMaps/node_2d no shadows.tres::3dd9d14ff7b556d7ee8d1d233111ba96::1696664879::res://.godot/exported/133200997/export-389a49bc3060975060bcd9ebadb898e1-node_2d no shadows.res
-res://Sprites/TileMaps/node_2d.tres::7804c63eddad5757c00d6af589929e46::1696664879::res://.godot/exported/133200997/export-ae369384f2acc2af6fdd6f36b491aedb-node_2d.res
+res://Particles/Test Particles.tscn::36b880699717d95b766e7a1732fe09f9::1696839934::res://.godot/exported/133200997/export-506477ff90840b28eee8b33045a42a1f-Test Particles.scn
+res://Particles/Test Particles2.tscn::a01085f8245a698b8b93b59139dceec3::1696839934::res://.godot/exported/133200997/export-5012f1391e7823636b5f1f1cb140b16d-Test Particles2.scn
+res://Scenes/Bleb.tscn::63918ea24d01486fc7f32aec236e5b41::1696859645::res://.godot/exported/133200997/export-11002136624ecb9536a85fd65ec3a7db-Bleb.scn
+res://Scenes/block.tscn::10494d5873226e5bbac6d95b40113de5::1696839934::res://.godot/exported/133200997/export-ac8c57d18a04cc52bbc61f46de273caf-block.scn
+res://Scenes/bullet.tscn::40560508ab685e75c4ab4126d0e12046::1696855442::res://.godot/exported/133200997/export-ebb3521b4f0ab2fc80eef1183e18e924-bullet.scn
+res://Scenes/character_body_2d.tscn::dbf0059214341a2c3fcbccdaa2f4b82f::1696859645::res://.godot/exported/133200997/export-dda0f8d895ddef9d71234958a64c897e-character_body_2d.scn
+res://Scenes/dagun.tscn::5f66a1132ea815f73af3e3b61ac0a2ca::1696855442::res://.godot/exported/133200997/export-3b9230b4c7c4a5845d4768848dbf094b-dagun.scn
+res://Scenes/derevo.tscn::2405c629d994a3b5f19c6a44bf3d755a::1696855442::res://.godot/exported/133200997/export-c74a2b16f2aa827249a7bbb0ed832af9-derevo.scn
+res://Scenes/dethcube.tscn::b3f42cb2bf86a15e84bb34ef83506ee4::1696839934::res://.godot/exported/133200997/export-c5e9af30e586d81aa31019fac3fd69b3-dethcube.scn
+res://Scenes/Main.tscn::bd7a86bcfda09b50e2f2dd6311b50537::1696839934::res://.godot/exported/133200997/export-a8e1520d83f25710dd4e3da8c6f32601-Main.scn
+res://Scenes/MainMenu.tscn::95acaa5d96e6af3bda92932b256c9708::1696839934::res://.godot/exported/133200997/export-5d46f2c25b5b7595677274e5845c73b8-MainMenu.scn
+res://Scenes/node_2d.tscn::459c998de67481a539196b9d2556424f::1696859645::res://.godot/exported/133200997/export-56b62997d4fc30d58bc9b160fa0e9b0c-node_2d.scn
+res://Scenes/player_interface.tscn::24916e4452abe3017ec72f0be594de33::1696839934::res://.godot/exported/133200997/export-88dbaf4aa22403ab6d30f78d6843fc3a-player_interface.scn
+res://Scenes/portal.tscn::6b0a33f088245c9599f619ec28147467::1696839934::res://.godot/exported/133200997/export-e6aa7fcb2e43d6395eac3a8bf41ce62d-portal.scn
+res://Scenes/Tortch.tscn::ad9a8fb20dfeddaa5bcbf6cc293aa9d4::1696859645::res://.godot/exported/133200997/export-ecfd56e7ce8b972c5687c5d4dc6981f8-Tortch.scn
+res://Sprites/TileMaps/new_environment.tres::e8de97117fc3c1374e1dc84998c164a6::1696839934::res://.godot/exported/133200997/export-2c77e59bf8c334590b2240bc177a4b28-new_environment.res
+res://Sprites/TileMaps/node_2d no shadows.tres::841f8dc946df20c0d3b4f5e815cb5dae::1696858790::res://.godot/exported/133200997/export-389a49bc3060975060bcd9ebadb898e1-node_2d no shadows.res
+res://Sprites/TileMaps/node_2d.tres::32e27760780a17b3b0deaafe8b4d111a::1696858790::res://.godot/exported/133200997/export-ae369384f2acc2af6fdd6f36b491aedb-node_2d.res
+res://Particles/explosion.tscn::776887628c1fa1280d0be4f5d0732f81::1696855442::res://.godot/exported/133200997/export-d87f621f38fa957da33b912c0a8b741d-explosion.scn
+res://Particles/Test Particles3.tscn::1d9fc87e8e7529bcd90b0650c2a3895c::1696859645::res://.godot/exported/133200997/export-49af0c524b9c0d48e8c7640a21003192-Test Particles3.scn
+res://Scenes/BlebSus.tscn::d482e72b3b030b8bbe2b75b6b6f550ab::1696859645::res://.godot/exported/133200997/export-b7db4241fae3a11053a8a961d65d3977-BlebSus.scn
+res://Scenes/ghost_pidar.tscn::c8fcc49ef1e21357a852e8753a459ce1::1696859645::res://.godot/exported/133200997/export-777f38365b54e0b910059a6e2baa5c99-ghost_pidar.scn
+res://Scenes/grenade.tscn::fc85abc42e6ff8a1223c337cd9db735e::1696855442::res://.godot/exported/133200997/export-d8eeb790e4a079f4a11c3aee15bad01f-grenade.scn
+res://Scenes/grenade_canon.tscn::d99028981c6ddc01010d6dacbe6b3a1c::1696855442::res://.godot/exported/133200997/export-39b3bd88c0ccc1fd2ac244b16c69651f-grenade_canon.scn
+res://Scenes/pidarGun.tscn::79064eec08420e522813c2a6d781c429::1696859690::res://.godot/exported/133200997/export-976ec48d0d824a0d4e5f283f8e186eea-pidarGun.scn
+res://Scenes/spawner.tscn::a0cf549beac0ed2fbe840af6da6cd3b2::1696859645::res://.godot/exported/133200997/export-e53043c35482003ac288a7cc487921a7-spawner.scn

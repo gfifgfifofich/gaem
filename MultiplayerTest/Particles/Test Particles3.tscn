@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxt43tutn03r"]
+
+[ext_resource type="Texture2D" uid="uid://basqelxfgbqfm" path="res://Sprites/sadsad.png" id="1_lxdg2"]
+[ext_resource type="Script" path="res://Scripts/GPUParticles2D.gd" id="2_v1oy2"]
+
+[sub_resource type="Gradient" id="Gradient_ol0s5"]
+offsets = PackedFloat32Array(0.214815, 0.577778, 1)
+colors = PackedColorArray(0.94681, 0.956054, 1, 1, 0.285573, 0.79475, 1, 1, 0.456052, 7.53246e-05, 0.417938, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q3os2"]
+gradient = SubResource("Gradient_ol0s5")
+
+[sub_resource type="Curve" id="Curve_n55ql"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.108434, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_egdmq"]
+curve = SubResource("Curve_n55ql")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gbe65"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 18.78
+initial_velocity_max = 85.97
+angular_velocity_min = -265.01
+angular_velocity_max = 68.21
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.03
+scale_max = 0.21
+scale_curve = SubResource("CurveTexture_egdmq")
+color_ramp = SubResource("GradientTexture1D_q3os2")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+scale = Vector2(0.3, 0.3)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_gbe65")
+texture = ExtResource("1_lxdg2")
+one_shot = true
+explosiveness = 0.76
+script = ExtResource("2_v1oy2")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.23, 0.23)
+color = Color(0, 0.819608, 0.988235, 1)
+shadow_enabled = true
+texture = ExtResource("1_lxdg2")
+texture_scale = 3.3

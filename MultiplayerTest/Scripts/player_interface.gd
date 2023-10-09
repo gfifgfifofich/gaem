@@ -39,5 +39,7 @@ func SetWeapons(weparr):
 	CurrentWeapons = weparr
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(Global.Player == null):
+		return
 	$CanvasLayer/HealthBar.value = Global.Player.health
 	SetWeapons(Global.Player.CurrentWeapons);
