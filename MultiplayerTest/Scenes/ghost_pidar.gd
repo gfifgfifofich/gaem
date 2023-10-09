@@ -22,26 +22,42 @@ func _ready():
 	
 	
 	add_to_group("enemies")
-	
-	
 func die():
 	get_parent().get_parent().CreatedEnemyIds.erase(id);
 	queue_free()
 
-func _physics_process(delta):
-	timeAfterAttack += delta;
-	if(bodies.size() >0):
-		if(timeAfterAttack +0.166666666*4 >=attackCooldown ):
-			$CharacterBody2D.play("Attack");
-		
-		if(timeAfterAttack >= attackCooldown ):
+func Shoot(atckID):
+	
+	if(atckID == 0):
+		$FlareSound.play()
+		var sus = projectile.instantiate();
+		sus.position = $FirePoint.global_position
+		sus.velocity = (trg - $FirePoint.global_position).normalized() * 300
+		Global.ObjectsNode.add_child(sus);
+
+
+func Attack(atckID, timer):
+	
+	if(atckID == 0):
+		if(timer >= attackCooldown ):
 			$FlareSound.play()
 			var sus = projectile.instantiate();
 			sus.position = $FirePoint.global_position
 			sus.velocity = (trg - $FirePoint.global_position).normalized() * 300
 			Global.ObjectsNode.add_child(sus);
 			timeAfterAttack = 0.0
-			
+			#Shoot(0)
+			#if(multiplayer.is_server()):
+			#	Global.MainNode.rpc("EnShoot",id,0,global_position,trg)
+		elif(timer + 0.166666666*3 >=attackCooldown ):
+			$CharacterBody2D.play("Attack")
+		
+		
+
+
+func _physics_process(delta):
+	
+	timeAfterAttack += delta;
 	
 	
 	if(!$CharacterBody2D.is_playing()):
@@ -84,6 +100,16 @@ func _physics_process(delta):
 		var a = (trg - global_position).normalized();
 		velocity =  Vector2(-a.y,a.x) * SPEED
 	move_and_slide()
+	
+	
+	if(!multiplayer.is_server()):
+		return
+	
+	
+	if(bodies.size() >0):
+		Attack(0,timeAfterAttack);
+		Global.MainNode.rpc("EnAttack",id,0,timeAfterAttack,global_position,trg);
+	
 
 
 func _on_area_2d_body_entered(body):

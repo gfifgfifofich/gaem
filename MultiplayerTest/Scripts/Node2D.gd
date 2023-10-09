@@ -175,16 +175,34 @@ func EnDeadge(id):
 			$Enemies.get_child(i).die()
 	pass
 
+@rpc("any_peer")
+func EnAttack(id, attackid,timer, pos, trg):
+	if(!multiplayer.is_server()):
+		for i in range(0,$Enemies.get_child_count()):
+			if($Enemies.get_child(i).id == id):
+				$Enemies.get_child(i).global_position = pos;
+				$Enemies.get_child(i).timeAfterAttack = timer;
+				$Enemies.get_child(i).trg = trg;
+				$Enemies.get_child(i).Attack(attackid,timer)
+	pass
 
-var SpawnTime =3.0
+@rpc("any_peer")
+func EnShoot(id, attackid, position, trg):
+	for i in range(0,$Enemies.get_child_count()):
+		if($Enemies.get_child(i).id == id):
+			$Enemies.get_child(i).global_position = position;
+			$Enemies.get_child(i).trg = trg;
+			$Enemies.get_child(i).Shoot(attackid)
+	pass
+var SpawnTime =1.0
 var WaveTimeLeft =0.0;
 
 var waveDuration = 30.0
-var wavePointGain = 30.0
+var wavePointGain = 3.0
 
-var wavePoints =130.0
+var wavePoints =30.0
 
-var wavevariation = [0,1,2,3]
+var wavevariation = [2]
 
 
 func s_spawnEEEEE(type,pos):
