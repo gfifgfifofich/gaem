@@ -186,14 +186,6 @@ func EnAttack(id, attackid,timer, pos, trg):
 				$Enemies.get_child(i).Attack(attackid,timer)
 	pass
 
-@rpc("any_peer")
-func EnShoot(id, attackid, position, trg):
-	for i in range(0,$Enemies.get_child_count()):
-		if($Enemies.get_child(i).id == id):
-			$Enemies.get_child(i).global_position = position;
-			$Enemies.get_child(i).trg = trg;
-			$Enemies.get_child(i).Shoot(attackid)
-	pass
 var SpawnTime =1.0
 var WaveTimeLeft =0.0;
 
